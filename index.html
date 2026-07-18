@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LKSN GDT 2026 - Live Scoreboard</title>
+
+    <!-- 1. TAILWIND CSS v4 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- 2. REACT & DOM CDN (Production Mode) -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+
+    <!-- 3. BABEL FOR LIVE PARSING JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- 4. FONT GOOGLE: KARLA -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700;800&display=swap" rel="stylesheet">
+
+    <!-- 5. CONFIGURATION COLORS & VIEWPORT LOCK -->
+    <style type="text/css">
+        @theme {
+            --font-karla: 'Karla', sans-serif;
+            --color-lks-blue: #2982c5;
+            --color-lks-green: #03a550;
+            --color-lks-pink: #e38ebc;
+            --color-lks-yellow: #ffc836;
+        }
+        body {
+            font-family: var(--font-karla);
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Mengunci view agar pas 5 baris screen tanpa scrolling */
+        }
+    </style>
+</head>
+<body class="text-slate-900 select-none">
+
+    <!-- Aplikasi React akan dirender di sini -->
+    <div id="root"></div>
+
+    <!-- 6. CORE APP JAVASCRIPT (Dimuat berurutan tanpa type="module") -->
+    <script src="./peserta.js"></script>
+    <script type="text/babel" src="./script.js"></script>
+
+</body>
+</html>
