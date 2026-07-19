@@ -1,10 +1,16 @@
-const { useState, useEffect, useMemo } = React;
+const { useState, useEffect, useMemo, useRef } = React;
 
-// 1. INJEKSI BACKGROUND PATTERN & LOGO SVG
+// --- ICONS (SVG) ---
+const IconSun = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="M4.93 4.93l1.41 1.41"/><path d="M17.66 17.66l1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="M6.34 17.66l-1.41 1.41"/><path d="M19.07 4.93l-1.41 1.41"/></svg>;
+const IconMoon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>;
+const IconMaximize = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>;
+const IconMinimize = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/></svg>;
+
+// --- INJEKSI SVG KUSTOM (Beradaptasi dengan Dark Mode via var css) ---
 const BackgroundPattern = ({ className }) => (
     <svg className={className} id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920.05 206.77" preserveAspectRatio="none">
         <defs>
-            <style>{`.cls-1{fill:#e38ebc;}.cls-2{fill:#fff;}.cls-3,.cls-4{fill:#2982c5;}.cls-3,.cls-5{stroke:#03a550;stroke-width:.1px;}.cls-6{fill:#ffc836;}.cls-5{fill:#03a550;}`}</style>
+            <style>{`.cls-1{fill:#e38ebc;}.cls-2{fill:var(--bg-svg);}.cls-3,.cls-4{fill:#2982c5;}.cls-3,.cls-5{stroke:#03a550;stroke-width:.1px;}.cls-6{fill:#ffc836;}.cls-5{fill:#03a550;}`}</style>
         </defs>
         <path className="cls-1" d="M377.6,174.71V.38H32v174.34h377.6s-32-.01-32-.01ZM220.8,32.05h-32s32-.01,32-.01h0Z"/>
         <rect className="cls-1" x="1542.4" y=".38" width="156.8" height="174.33"/>
@@ -74,7 +80,7 @@ const BackgroundPattern = ({ className }) => (
 const LogoGdtSkills = ({ className }) => (
     <svg className={className} id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 270.61 71.33" width="100%" height="100%">
         <defs>
-            <style>{`.cls-g1{fill:#14a94b;}.cls-g2{fill:#5f2f11;}`}</style>
+            <style>{`.cls-g1{fill:#14a94b;}.cls-g2{fill:var(--text-color, #5f2f11);}`}</style>
         </defs>
         <g>
             <g id="t"><path className="cls-g2" d="M167.66,49.88c-5.88,0-8.73-2.7-8.73-8.25v-6.9c0-.99-.81-1.77-1.8-1.78-.57,0-1.03-.47-1.03-1.04v-3.55c0-.63.42-1.16,1.02-1.35,1.8-.58,1.81-2.68,1.81-2.68v-3.01c0-.78.63-1.41,1.41-1.41h6.47c.78,0,1.41.63,1.41,1.41v4.65h4.16c.78,0,1.41.63,1.41,1.41v4.17c0,.78-.63,1.41-1.41,1.41h-4.16v6.47c0,1.92.92,2.85,2.8,2.85.44,0,.92-.06,1.41-.17.08-.02.16-.03.23-.03.57,0,1.04.47,1.04,1.04v4.86c0,.43-.27.82-.68.98-1.51.59-3.47.93-5.36.93h0Z"/></g>
@@ -101,7 +107,7 @@ const LogoGdtSkills = ({ className }) => (
     </svg>
 );
 
-// Helper Fungsi Waktu WIB (Memaksa jam browser untuk patuh pada WIB / UTC+7)
+// --- HELPER WIB ---
 const getWIBTime = () => {
     const now = new Date();
     const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
@@ -114,21 +120,40 @@ function App() {
     const [searchQuery, setSearchQuery] = useState('');
     const [sortBy, setSortBy] = useState('no-asc');
     
+    // Fitur Dark Mode
+    const [isDarkMode, setIsDarkMode] = useState(false);
+    // Fitur Fullscreen
+    const [isFullscreen, setIsFullscreen] = useState(false);
+    const timerRef = useRef(null);
+
     const [db, setDb] = useState({ config: {}, modules: [], schedule: [], importantLinks: [] });
     const [pesertaList] = useState(window.DATA_PESERTA || []);
 
+    // Pengaturan Global CSS Variable untuk Dark Mode SVG Support
     useEffect(() => {
-        fetch('data.json')
-            .then(res => res.json())
-            .then(data => setDb(data))
-            .catch(err => console.error(err));
+        if (isDarkMode) {
+            document.documentElement.classList.add('dark');
+            document.documentElement.style.setProperty('--bg-svg', '#0f172a'); // Warna slate-900 Tailwind
+            document.documentElement.style.setProperty('--text-color', '#cbd5e1'); // Warna terang untuk Logo Text
+            document.body.style.backgroundColor = '#0f172a';
+        } else {
+            document.documentElement.classList.remove('dark');
+            document.documentElement.style.setProperty('--bg-svg', '#ffffff');
+            document.documentElement.style.setProperty('--text-color', '#5f2f11'); // Warna cokelat logo asli
+            document.body.style.backgroundColor = '#ffffff';
+        }
+    }, [isDarkMode]);
+
+    // Listener Full Screen Native API
+    useEffect(() => {
+        const handleFullscreen = () => setIsFullscreen(!!document.fullscreenElement);
+        document.addEventListener('fullscreenchange', handleFullscreen);
+        return () => document.removeEventListener('fullscreenchange', handleFullscreen);
     }, []);
 
-    // Engine Jam Real-time WIB
+    // Engine Jam WIB
     useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrentTime(getWIBTime());
-        }, 1000);
+        const interval = setInterval(() => setCurrentTime(getWIBTime()), 1000);
         return () => clearInterval(interval);
     }, []);
 
@@ -139,27 +164,26 @@ function App() {
         }
     }, [searchQuery]);
 
-    // Logika Sinkronisasi Agenda Aktual Berdasarkan Waktu Sistem WIB
+    const toggleFullscreen = () => {
+        if (!document.fullscreenElement) {
+            if (timerRef.current?.requestFullscreen) timerRef.current.requestFullscreen();
+        } else {
+            if (document.exitFullscreen) document.exitFullscreen();
+        }
+    };
+
     const { activeAgenda, nextAgenda } = useMemo(() => {
-        let active = null;
-        let next = null;
+        let active = null, next = null;
         const now = currentTime.getTime();
-        
         for (let i = 0; i < db.schedule.length; i++) {
-            const s = db.schedule[i];
-            const start = new Date(s.start).getTime();
-            const end = new Date(s.end).getTime();
-            
-            if (now >= start && now <= end) {
-                active = s;
-            } else if (now < start && !next) {
-                next = s;
-            }
+            const start = new Date(db.schedule[i].start).getTime();
+            const end = new Date(db.schedule[i].end).getTime();
+            if (now >= start && now <= end) active = db.schedule[i];
+            else if (now < start && !next) next = db.schedule[i];
         }
         return { activeAgenda: active, nextAgenda: next };
     }, [currentTime, db.schedule]);
 
-    // Kalkulasi Sisa Detik (Countdown menuju batas akhir agenda aktif, ATAU hitung mundur menuju agenda selanjutnya)
     const targetTime = activeAgenda ? new Date(activeAgenda.end).getTime() : (nextAgenda ? new Date(nextAgenda.start).getTime() : null);
     const sisaDetik = targetTime ? Math.max(0, Math.floor((targetTime - currentTime.getTime()) / 1000)) : 0;
 
@@ -169,9 +193,7 @@ function App() {
     const seconds = formatDuaDigit(sisaDetik % 60);
 
     const processedPeserta = useMemo(() => {
-        let filtered = pesertaList.filter(p => 
-            p.nama.toLowerCase().includes(searchQuery.toLowerCase()) || p.no.includes(searchQuery)
-        );
+        let filtered = pesertaList.filter(p => p.nama.toLowerCase().includes(searchQuery.toLowerCase()) || p.no.includes(searchQuery));
         return filtered.sort((a, b) => {
             if (sortBy === 'no-asc') return parseInt(a.no) - parseInt(b.no);
             if (sortBy === 'no-desc') return parseInt(b.no) - parseInt(a.no);
@@ -181,70 +203,87 @@ function App() {
     }, [pesertaList, searchQuery, sortBy]);
 
     return (
-        <div className="flex flex-col h-screen w-screen overflow-hidden bg-white font-karla">
+        <div className="flex flex-col h-screen w-screen overflow-hidden bg-white dark:bg-slate-900 font-karla transition-colors duration-300">
             
-            {/* --- BARIS 1: HEADER (1/6 TINGGI) HAPUS GRAFIS PATTERN, MARGIN PX-16 --- */}
-            <header className="h-[16.6vh] w-full border-b-4 border-lks-blue shrink-0 flex items-center justify-between px-16 bg-white">
-                <button onClick={() => setView('dashboard')} className="p-2 max-h-[85%] w-72 flex items-center justify-center transition hover:opacity-95 focus:outline-none cursor-pointer">
+            {/* --- HEADER (1/6) MARGIN KANAN KIRI DIPERBESAR, SEKAT HITAM HILANG --- */}
+            <header className="h-[16.6vh] w-full shrink-0 flex items-center justify-between px-24 lg:px-32 bg-white dark:bg-slate-900 transition-colors">
+                <button onClick={() => setView('dashboard')} className="max-h-[85%] w-72 flex items-center justify-center transition hover:opacity-95 focus:outline-none cursor-pointer">
                     <LogoGdtSkills className="w-full h-auto object-contain" />
                 </button>
-                <button onClick={() => setView('dashboard')} className="px-8 py-3 text-center transition hover:opacity-95 focus:outline-none cursor-pointer">
-                    <h1 className="text-xl md:text-3xl font-extrabold tracking-tight text-lks-pink">
-                        {db.config.headline || "LKSN GDT 2026"}
-                    </h1>
-                </button>
+                <div className="flex items-center gap-6">
+                    <button onClick={() => setView('dashboard')} className="text-center transition hover:opacity-95 focus:outline-none cursor-pointer hidden md:block">
+                        <h1 className="text-xl md:text-3xl font-extrabold tracking-tight text-lks-pink">
+                            {db.config.headline || "LKSN GDT 2026"}
+                        </h1>
+                    </button>
+                    {/* TOMBOL TOGGLE DARK MODE */}
+                    <button onClick={() => setIsDarkMode(!isDarkMode)} className="p-3 bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-amber-400 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-full transition-colors cursor-pointer outline-none">
+                        {isDarkMode ? <IconSun /> : <IconMoon />}
+                    </button>
+                </div>
             </header>
 
-            {/* --- BARIS 2, 3, 4: MAIN AREA (4/6 TINGGI) MARGIN PX-16 --- */}
-            <main className="h-[66.8vh] w-full px-16 py-6 bg-slate-50/40 shrink-0 overflow-y-auto">
+            {/* --- MAIN AREA (4/6) MARGIN KANAN KIRI BESAR --- */}
+            <main className="h-[66.8vh] w-full px-24 lg:px-32 py-6 bg-slate-50/40 dark:bg-slate-950 shrink-0 overflow-y-auto transition-colors">
                 
                 {view === 'dashboard' && (
                     <div className="w-full h-full flex flex-col md:flex-row gap-8">
-                        {/* COUNTDOWN BOX -> FONT 130pt AGAR PROPORSIONAL */}
-                        <div className="w-full md:w-3/4 bg-white flex flex-col items-center justify-center relative">
-                            <h2 className="text-xl md:text-2xl font-extrabold text-lks-pink mb-0 tracking-wide select-none">
+                        {/* COUNTDOWN BOX -> ADA FITUR FULLSCREEN */}
+                        <div ref={timerRef} className={`bg-white dark:bg-slate-900 rounded-none flex flex-col items-center justify-center relative transition-colors ${isFullscreen ? 'w-screen h-screen fixed inset-0 z-50 p-12' : 'w-full md:w-3/4'}`}>
+                            
+                            {/* TOMBOL FULLSCREEN */}
+                            <button onClick={toggleFullscreen} className="absolute top-4 right-4 text-slate-300 dark:text-slate-600 hover:text-lks-blue dark:hover:text-sky-400 transition cursor-pointer bg-transparent border-0 outline-none">
+                                {isFullscreen ? <IconMinimize /> : <IconMaximize />}
+                            </button>
+
+                            <h2 className={`font-extrabold text-lks-pink tracking-wide select-none ${isFullscreen ? 'text-3xl lg:text-5xl mb-6' : 'text-xl md:text-2xl mb-0'}`}>
                                 &lt;&lt; {activeAgenda ? activeAgenda.title : "Menunggu Sesi Dimulai"} &gt;&gt;
                             </h2>
-                            <div className="text-[130pt] font-bold text-lks-blue leading-none tracking-tight select-none">
+                            {/* ANGKA TIMER RESPONSIVE TERHADAP FULLSCREEN */}
+                            <div className={`font-bold text-lks-blue dark:text-sky-400 leading-none tracking-tight select-none flex items-center justify-center ${isFullscreen ? 'text-[22vw]' : 'text-[15vw] lg:text-[130pt]'}`}>
                                 {hours}:{minutes}:{seconds}
                             </div>
-                            <p className="text-xs md:text-sm font-bold text-lks-pink tracking-widest mt-2 select-none">Jam : Menit : Detik</p>
+                            <p className={`font-bold text-lks-pink tracking-widest select-none ${isFullscreen ? 'text-2xl mt-6' : 'text-xs md:text-sm mt-2'}`}>
+                                Jam : Menit : Detik
+                            </p>
                         </div>
 
-                        {/* GREEN BOX WIDGETS */}
-                        <div className="w-full md:w-1/4 flex flex-col justify-between gap-4">
-                            <div className="bg-lks-green text-white p-6 font-bold flex flex-col justify-center h-1/2">
-                                <span className="text-xs font-bold text-emerald-100 block mb-2">Waktu Sistem (WIB):</span>
-                                <div className="text-3xl lg:text-4xl font-black font-mono leading-none tracking-tight">{currentTime.toLocaleTimeString('id-ID')}</div>
-                                <div className="text-xs text-emerald-100/90 mt-2">{currentTime.toLocaleDateString('id-ID', {day: 'numeric', month: 'long', year: 'numeric'})}</div>
+                        {/* WIDGET KANAN GREEN BOX */}
+                        {!isFullscreen && (
+                            <div className="w-full md:w-1/4 flex flex-col justify-between gap-4">
+                                <div className="bg-lks-green text-white p-6 font-bold flex flex-col justify-center h-1/2 rounded-none">
+                                    <span className="text-xs font-bold text-emerald-100 block mb-2">Waktu Sistem (WIB):</span>
+                                    <div className="text-3xl lg:text-4xl font-black font-mono leading-none tracking-tight">{currentTime.toLocaleTimeString('id-ID')}</div>
+                                    <div className="text-xs text-emerald-100/90 mt-2">{currentTime.toLocaleDateString('id-ID', {day: 'numeric', month: 'long', year: 'numeric'})}</div>
+                                </div>
+                                <div className="bg-lks-green text-white p-6 font-bold flex flex-col justify-center h-1/2 rounded-none">
+                                    <span className="text-xs font-bold text-emerald-100 block mb-2">Agenda Selanjutnya:</span>
+                                    <p className="text-lg lg:text-xl leading-snug font-extrabold">
+                                        {nextAgenda ? nextAgenda.title : "Seluruh Rangkaian Agenda Selesai"}
+                                    </p>
+                                </div>
                             </div>
-                            <div className="bg-lks-green text-white p-6 font-bold flex flex-col justify-center h-1/2">
-                                <span className="text-xs font-bold text-emerald-100 block mb-2">Agenda Selanjutnya:</span>
-                                <p className="text-lg lg:text-xl leading-snug font-extrabold">
-                                    {nextAgenda ? nextAgenda.title : "Seluruh Rangkaian Agenda Selesai"}
-                                </p>
-                            </div>
-                        </div>
+                        )}
                     </div>
                 )}
 
                 {/* VIEW 1: AKSES MODUL */}
                 {view === 'modules' && (
-                    <div className="bg-white p-6 max-h-full overflow-y-auto">
-                        <div className="border-b pb-3 mb-4"><h3 className="text-xl font-extrabold text-lks-blue">Modul Soal LKSN</h3></div>
-                        <div className="space-y-3">
+                    <div className="bg-white dark:bg-slate-900 p-6 max-h-full overflow-y-auto">
+                        <div className="border-b border-slate-200 dark:border-slate-800 pb-3 mb-4"><h3 className="text-xl font-extrabold text-lks-blue dark:text-sky-400">Modul Soal LKSN</h3></div>
+                        <div className="space-y-4">
                             {db.modules.map((m) => {
                                 const isReleased = currentTime >= new Date(m.releaseTime);
                                 return (
-                                    <div key={m.id} className="p-4 bg-slate-50 flex items-center justify-between">
+                                    <div key={m.id} className="p-5 bg-slate-50 dark:bg-slate-800 flex items-center justify-between">
                                         <div>
-                                            <h4 className="font-bold text-slate-800">{m.title}</h4>
-                                            <p className="text-xs text-slate-400 mt-1">PIC: {m.pic} • Rilis: {new Date(m.releaseTime).toLocaleTimeString('id-ID')} WIB</p>
+                                            <h4 className="font-bold text-slate-800 dark:text-slate-100 text-lg">{m.title}</h4>
+                                            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">PIC: {m.pic} • Rilis: {new Date(m.releaseTime).toLocaleTimeString('id-ID')} WIB</p>
                                         </div>
                                         {isReleased ? (
-                                            <a href={m.link} target="_blank" rel="noreferrer" className="bg-lks-blue text-white px-4 py-2 text-xs font-bold transition hover:bg-sky-600">Buka Drive Modul</a>
+                                            <a href={m.link} target="_blank" rel="noreferrer" className="bg-lks-blue dark:bg-sky-600 text-white px-8 py-4 text-lg font-bold transition hover:bg-sky-700 dark:hover:bg-sky-500 shadow-md">Buka Modul</a>
                                         ) : (
-                                            <button disabled className="bg-slate-300 text-slate-500 px-4 py-2 text-xs font-bold cursor-not-allowed">Terkunci</button>
+                                            <button disabled className="bg-slate-300 dark:bg-slate-700 text-slate-500 dark:text-slate-400 px-8 py-4 text-lg font-bold cursor-not-allowed">Terkunci</button>
                                         )}
                                     </div>
                                 );
@@ -255,77 +294,105 @@ function App() {
 
                 {/* VIEW 2: FOLDER PENGUMPULAN */}
                 {view === 'peserta' && (
-                    <div className="bg-white p-6 max-h-full flex flex-col h-full">
-                        <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-3 border-b pb-3 mb-4 shrink-0">
-                            <h3 className="text-xl font-extrabold text-lks-blue">Folder Pengumpulan Tugas</h3>
+                    <div className="bg-white dark:bg-slate-900 p-6 max-h-full flex flex-col h-full">
+                        <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-3 border-b border-slate-200 dark:border-slate-800 pb-3 mb-4 shrink-0">
+                            <h3 className="text-xl font-extrabold text-lks-blue dark:text-sky-400">Folder Pengumpulan Tugas</h3>
                             <div className="flex items-center gap-2">
-                                <select value={sortBy} onChange={(e) => setSortBy(e.target.value)} className="text-xs font-bold px-3 py-2 border border-slate-200 bg-white focus:outline-none">
+                                <select value={sortBy} onChange={(e) => setSortBy(e.target.value)} className="text-sm font-bold px-4 py-2 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 dark:text-slate-200 focus:outline-none">
                                     <option value="no-asc">No. Terkecil</option>
                                     <option value="no-desc">No. Terbesar</option>
                                     <option value="name-asc">Nama (A-Z)</option>
                                 </select>
-                                <input type="text" placeholder="Cari No / Nama..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className="text-xs px-3 py-2 border border-slate-200 bg-white focus:outline-none w-40"/>
+                                <input type="text" placeholder="Cari No / Nama..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className="text-sm px-4 py-2 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 dark:text-slate-200 focus:outline-none w-56"/>
                             </div>
                         </div>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 overflow-y-auto flex-1">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 overflow-y-auto flex-1">
                             {processedPeserta.map((p, idx) => (
-                                <div key={idx} className="p-3 bg-slate-50 flex items-center justify-between text-sm hover:bg-slate-100 transition">
-                                    <div>
-                                        <span className="font-mono bg-lks-blue/10 text-lks-blue px-2 py-0.5 font-bold mr-2">{p.no}</span>
-                                        <span className="font-bold text-slate-700">{p.nama}</span>
+                                <div key={idx} className="p-4 bg-slate-50 dark:bg-slate-800 flex flex-col xl:flex-row xl:items-center justify-between text-base hover:bg-slate-100 dark:hover:bg-slate-700 transition gap-4">
+                                    <div className="flex items-center">
+                                        <span className="font-mono bg-lks-blue/10 dark:bg-sky-500/20 text-lks-blue dark:text-sky-300 px-3 py-1 font-bold mr-3">{p.no}</span>
+                                        <span className="font-bold text-slate-800 dark:text-slate-100">{p.nama}</span>
                                     </div>
-                                    <a href={p.link} target="_blank" rel="noreferrer" className="bg-lks-blue hover:bg-sky-600 transition text-white px-3 py-1.5 text-xs font-bold">Buka Folder</a>
+                                    {/* Tombol Diperbesar */}
+                                    <a href={p.link} target="_blank" rel="noreferrer" className="bg-lks-blue dark:bg-sky-600 hover:bg-sky-700 dark:hover:bg-sky-500 transition text-white px-8 py-4 font-bold text-center shadow-md text-base whitespace-nowrap">Buka Folder</a>
                                 </div>
                             ))}
                         </div>
                     </div>
                 )}
 
-                {/* VIEW 3: JADWAL KOMPETISI */}
+                {/* VIEW 3: JADWAL KOMPETISI (FORMAT TABEL + HIGHLIGHT) */}
                 {view === 'schedule' && (
-                    <div className="bg-white p-6 max-h-full overflow-y-auto">
-                        <div className="border-b pb-3 mb-4"><h3 className="text-xl font-extrabold text-lks-blue">Jadwal Kompetisi Terstruktur</h3></div>
-                        <div className="space-y-4">
-                            {Object.entries(
-                                db.schedule.reduce((acc, curr) => {
-                                    if (!acc[curr.dayLabel]) acc[curr.dayLabel] = [];
-                                    acc[curr.dayLabel].push(curr);
-                                    return acc;
-                                }, {})
-                            ).map(([dayGroup, items], idx) => (
-                                <div key={idx} className="border-l-4 border-lks-blue pl-4 py-1">
-                                    <h4 className="font-extrabold text-lks-pink text-sm mb-2 uppercase">{dayGroup}</h4>
-                                    <div className="space-y-1.5">
-                                        {items.map((s) => {
-                                            const isNow = currentTime.getTime() >= new Date(s.start).getTime() && currentTime.getTime() <= new Date(s.end).getTime();
-                                            return (
-                                                <div key={s.id} className={`p-3 transition-colors flex justify-between items-center text-xs ${isNow ? 'bg-sky-100 border border-sky-200' : 'bg-slate-50'}`}>
-                                                    <div>
-                                                        <span className={`font-bold block ${isNow ? 'text-lks-blue' : 'text-slate-800'}`}>{s.title} {isNow && "(Berlangsung)"}</span>
-                                                        <span className="text-slate-400 block mt-0.5">Durasi: {s.duration} | PIC: {s.pic}</span>
-                                                    </div>
-                                                    <span className={`font-mono font-bold px-2 py-1 ${isNow ? 'text-white bg-lks-blue' : 'text-lks-blue bg-white border border-slate-200'}`}>
-                                                        {new Date(s.start).toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'})} - {new Date(s.end).toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'})} WIB
-                                                    </span>
-                                                </div>
-                                            )
-                                        })}
-                                    </div>
-                                </div>
-                            ))}
+                    <div className="bg-white dark:bg-slate-900 p-6 max-h-full overflow-y-auto w-full">
+                        <div className="border-b border-slate-200 dark:border-slate-800 pb-3 mb-4"><h3 className="text-xl font-extrabold text-lks-blue dark:text-sky-400">Jadwal Kompetisi Nasional</h3></div>
+                        <div className="w-full overflow-x-auto">
+                            <table className="w-full text-left border-collapse min-w-[800px]">
+                                <thead>
+                                    <tr className="bg-slate-100 dark:bg-slate-800 text-lks-blue dark:text-sky-400">
+                                        <th className="py-4 px-6 font-extrabold border-b border-slate-200 dark:border-slate-700 whitespace-nowrap">Waktu (WIB)</th>
+                                        <th className="py-4 px-6 font-extrabold border-b border-slate-200 dark:border-slate-700 w-full">Kegiatan</th>
+                                        <th className="py-4 px-6 font-extrabold border-b border-slate-200 dark:border-slate-700 whitespace-nowrap">Durasi</th>
+                                        <th className="py-4 px-6 font-extrabold border-b border-slate-200 dark:border-slate-700 whitespace-nowrap">PIC</th>
+                                        <th className="py-4 px-6 font-extrabold border-b border-slate-200 dark:border-slate-700 whitespace-nowrap text-center">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {Object.entries(
+                                        db.schedule.reduce((acc, curr) => {
+                                            if (!acc[curr.dayLabel]) acc[curr.dayLabel] = [];
+                                            acc[curr.dayLabel].push(curr);
+                                            return acc;
+                                        }, {})
+                                    ).map(([dayGroup, items]) => (
+                                        <React.Fragment key={dayGroup}>
+                                            <tr>
+                                                <td colSpan="5" className="py-4 px-6 bg-slate-50 dark:bg-slate-900 font-extrabold text-lks-pink uppercase border-b border-slate-200 dark:border-slate-700">
+                                                    {dayGroup}
+                                                </td>
+                                            </tr>
+                                            {items.map((s) => {
+                                                const isNow = currentTime.getTime() >= new Date(s.start).getTime() && currentTime.getTime() <= new Date(s.end).getTime();
+                                                const isPast = currentTime.getTime() > new Date(s.end).getTime();
+                                                
+                                                return (
+                                                    <tr key={s.id} className={`transition-colors border-b border-slate-200 dark:border-slate-700 ${isNow ? 'bg-sky-100 dark:bg-sky-900/60 font-bold' : 'hover:bg-slate-50 dark:hover:bg-slate-800 bg-white dark:bg-slate-900'}`}>
+                                                        <td className="py-4 px-6 font-mono text-sm whitespace-nowrap dark:text-slate-300">
+                                                            {new Date(s.start).toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'})} - {new Date(s.end).toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'})}
+                                                        </td>
+                                                        <td className={`py-4 px-6 ${isNow ? 'text-lks-blue dark:text-sky-300' : 'text-slate-800 dark:text-slate-200'}`}>
+                                                            {s.title}
+                                                        </td>
+                                                        <td className="py-4 px-6 text-sm text-slate-600 dark:text-slate-400 whitespace-nowrap">{s.duration}</td>
+                                                        <td className="py-4 px-6 text-sm text-slate-600 dark:text-slate-400 whitespace-nowrap">{s.pic}</td>
+                                                        <td className="py-4 px-6 text-center whitespace-nowrap">
+                                                            {isNow ? (
+                                                                <span className="bg-lks-blue dark:bg-sky-500 text-white px-4 py-1.5 text-xs font-bold rounded-full animate-pulse shadow-sm">Berlangsung</span>
+                                                            ) : isPast ? (
+                                                                <span className="bg-slate-200 dark:bg-slate-700 text-slate-500 dark:text-slate-300 px-4 py-1.5 text-xs font-bold rounded-full">Selesai</span>
+                                                            ) : (
+                                                                <span className="bg-white dark:bg-slate-800 text-lks-blue dark:text-sky-400 border border-slate-200 dark:border-slate-600 px-4 py-1.5 text-xs font-bold rounded-full">Akan Datang</span>
+                                                            )}
+                                                        </td>
+                                                    </tr>
+                                                )
+                                            })}
+                                        </React.Fragment>
+                                    ))}
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 )}
 
                 {/* VIEW 4: LINK PENTING */}
                 {view === 'links' && (
-                    <div className="bg-white p-6 max-h-full overflow-y-auto">
-                        <div className="border-b pb-3 mb-4"><h3 className="text-xl font-extrabold text-lks-blue">Link-Link Penting Kompetisi</h3></div>
+                    <div className="bg-white dark:bg-slate-900 p-6 max-h-full overflow-y-auto">
+                        <div className="border-b border-slate-200 dark:border-slate-800 pb-3 mb-4"><h3 className="text-xl font-extrabold text-lks-blue dark:text-sky-400">Link-Link Penting Kompetisi</h3></div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             {db.importantLinks?.map((l, idx) => (
-                                <a key={idx} href={l.url} target="_blank" rel="noreferrer" className="p-4 bg-slate-50 hover:bg-lks-blue hover:text-white border-l-4 border-lks-blue flex items-center justify-between group transition-colors">
-                                    <span className="font-bold text-slate-700 group-hover:text-white transition-colors">{l.label}</span>
-                                    <span className="text-xs text-lks-blue group-hover:text-white font-bold transition-colors">Kunjungi Tautan →</span>
+                                <a key={idx} href={l.url} target="_blank" rel="noreferrer" className="p-5 bg-slate-50 dark:bg-slate-800 hover:bg-lks-blue dark:hover:bg-sky-600 hover:text-white border-l-4 border-lks-blue dark:border-sky-500 flex items-center justify-between group transition-colors">
+                                    <span className="font-bold text-lg text-slate-700 dark:text-slate-100 group-hover:text-white transition-colors">{l.label}</span>
+                                    <span className="text-sm text-lks-blue dark:text-sky-400 group-hover:text-white font-bold transition-colors">Kunjungi →</span>
                                 </a>
                             ))}
                         </div>
@@ -334,36 +401,36 @@ function App() {
 
                 {/* VIEW RAHASIA: ADMIN */}
                 {view === 'admin' && (
-                    <div className="bg-white border border-lks-pink p-6 max-w-xl mx-auto">
-                        <div className="flex justify-between items-center border-b pb-2 mb-4">
+                    <div className="bg-white dark:bg-slate-900 border border-lks-pink p-6 max-w-xl mx-auto">
+                        <div className="flex justify-between items-center border-b border-slate-200 dark:border-slate-700 pb-2 mb-4">
                             <h2 className="font-black text-lks-pink text-sm uppercase">Admin Panel LKSN</h2>
-                            <button onClick={() => setView('dashboard')} className="text-xs font-bold bg-slate-100 px-2 py-1 hover:bg-slate-200 transition">Tutup</button>
+                            <button onClick={() => setView('dashboard')} className="text-xs font-bold bg-slate-100 dark:bg-slate-800 dark:text-white px-3 py-2 transition">Tutup</button>
                         </div>
-                        <div className="text-xs text-slate-500">
-                            Fungsi Waktu sekarang berjalan otomatis mengikuti waktu WIB berdasarkan jadwal data.json.
+                        <div className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+                            Fungsi Waktu sekarang berjalan mandiri dan kebal dari manipulasi dengan menyinkronisasikan jam laptop secara paksa ke dalam standar <b>Waktu Indonesia Barat (WIB)</b> mengikuti jadwal <code>data.json</code>.
                         </div>
                     </div>
                 )}
             </main>
 
-            {/* --- BARIS 5: FOOTER (1/6 TINGGI) PATTERN DENGAN TOMBOL PUTIH BERJARAK (GAP-6) & HOVER/ACTIVE HIGHLIGHT --- */}
-            <footer className="h-[16.6vh] relative w-full border-t-4 border-lks-blue shrink-0">
+            {/* --- FOOTER NAVIGATION (1/6) TOMBOL BACKGROUND PUTIH BERSIH --- */}
+            <footer className="h-[16.6vh] relative w-full shrink-0">
                 <BackgroundPattern className="absolute inset-0 w-full h-full object-cover rotate-180" />
-                <div className="absolute inset-0 flex items-center justify-center gap-6 px-16 z-10 w-full h-full py-4">
+                <div className="absolute inset-0 flex items-center justify-center gap-6 px-24 lg:px-32 z-10 w-full h-full py-4">
                     
-                    <button onClick={() => setView('modules')} className={`bg-white text-lks-blue font-semibold h-full w-1/4 flex items-center justify-center text-[24pt] transition-all cursor-pointer border-2 hover:-translate-y-1 hover:shadow-lg ${view === 'modules' ? 'border-sky-400 bg-sky-50 transform scale-[0.98]' : 'border-transparent'}`}>
+                    <button onClick={() => setView('modules')} className={`bg-white border-0 font-semibold h-[76.5%] w-[22.5%] flex items-center justify-center text-[20pt] xl:text-[24pt] transition-all cursor-pointer hover:shadow-lg ${view === 'modules' ? 'bg-sky-100 text-sky-700 shadow-inner scale-[0.98]' : 'text-lks-blue hover:bg-slate-50 hover:-translate-y-1'}`}>
                         Akses Modul
                     </button>
 
-                    <button onClick={() => setView('peserta')} className={`bg-white text-lks-blue font-semibold h-full w-1/4 flex items-center justify-center text-[24pt] transition-all cursor-pointer border-2 hover:-translate-y-1 hover:shadow-lg ${view === 'peserta' ? 'border-sky-400 bg-sky-50 transform scale-[0.98]' : 'border-transparent'}`}>
+                    <button onClick={() => setView('peserta')} className={`bg-white border-0 font-semibold h-[76.5%] w-[22.5%] flex items-center justify-center text-[20pt] xl:text-[24pt] transition-all cursor-pointer hover:shadow-lg ${view === 'peserta' ? 'bg-sky-100 text-sky-700 shadow-inner scale-[0.98]' : 'text-lks-blue hover:bg-slate-50 hover:-translate-y-1'}`}>
                         Folder Pengumpulan
                     </button>
 
-                    <button onClick={() => setView('schedule')} className={`bg-white text-lks-blue font-semibold h-full w-1/4 flex items-center justify-center text-[24pt] transition-all cursor-pointer border-2 hover:-translate-y-1 hover:shadow-lg ${view === 'schedule' ? 'border-sky-400 bg-sky-50 transform scale-[0.98]' : 'border-transparent'}`}>
+                    <button onClick={() => setView('schedule')} className={`bg-white border-0 font-semibold h-[76.5%] w-[22.5%] flex items-center justify-center text-[20pt] xl:text-[24pt] transition-all cursor-pointer hover:shadow-lg ${view === 'schedule' ? 'bg-sky-100 text-sky-700 shadow-inner scale-[0.98]' : 'text-lks-blue hover:bg-slate-50 hover:-translate-y-1'}`}>
                         Jadwal Kompetisi
                     </button>
 
-                    <button onClick={() => setView('links')} className={`bg-white text-lks-blue font-semibold h-full w-1/4 flex items-center justify-center text-[24pt] transition-all cursor-pointer border-2 hover:-translate-y-1 hover:shadow-lg ${view === 'links' ? 'border-sky-400 bg-sky-50 transform scale-[0.98]' : 'border-transparent'}`}>
+                    <button onClick={() => setView('links')} className={`bg-white border-0 font-semibold h-[76.5%] w-[22.5%] flex items-center justify-center text-[20pt] xl:text-[24pt] transition-all cursor-pointer hover:shadow-lg ${view === 'links' ? 'bg-sky-100 text-sky-700 shadow-inner scale-[0.98]' : 'text-lks-blue hover:bg-slate-50 hover:-translate-y-1'}`}>
                         Link Link Penting
                     </button>
 
