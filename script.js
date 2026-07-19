@@ -75,9 +75,9 @@ const BackgroundPattern = ({ className }) => (
     </svg>
 );
 
-// UPDATE LOGO GDTSKILLS
+// --- UPDATE LOGO GDTSKILLS (FIX VIEWBOX & PRESERVE ASPECT RATIO) ---
 const LogoGdtSkills = ({ className }) => (
-    <svg className={className} id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 270.61 71.33" width="100%" height="100%">
+    <svg className={className} preserveAspectRatio="xMidYMid meet" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 270.61 71.33" width="100%" height="100%">
         <defs>
             <style>{`.cls-g1{fill:#00a931;}.cls-g2{fill:#602c05;}`}</style>
         </defs>
@@ -106,10 +106,12 @@ const LogoGdtSkills = ({ className }) => (
     </svg>
 );
 
-// --- HELPER WIB ---
+// --- HELPER WIB ABSOLUT (Memaksa perhitungan timezone ke UTC+7) ---
 const getWIBTime = () => {
-    const now = new Date();
-    const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+    const d = new Date();
+    // Tarik waktu saat ini dalam format UTC
+    const utc = d.getTime() + (d.getTimezoneOffset() * 60000);
+    // Tambahkan 7 Jam (3600000 ms * 7) untuk memaksa ke WIB
     return new Date(utc + (3600000 * 7));
 };
 
@@ -238,8 +240,9 @@ function App() {
                             <div className="w-full md:w-1/4 flex flex-col justify-between gap-4">
                                 <div className="bg-white text-lks-blue p-6 font-bold flex flex-col justify-center h-1/2 rounded-none border border-slate-100 shadow-sm">
                                     <span className="text-xs font-bold block mb-2 opacity-80">Waktu Sistem (WIB):</span>
-                                    <div className="text-3xl lg:text-4xl font-black font-mono leading-none tracking-tight">{currentTime.toLocaleTimeString('id-ID')}</div>
-                                    <div className="text-xs mt-2 opacity-80">{currentTime.toLocaleDateString('id-ID', {day: 'numeric', month: 'long', year: 'numeric'})}</div>
+                                    {/* Parameter 'id-ID' di toLocaleTimeString akan mengadaptasi Waktu WIB kita */}
+                                    <div className="text-3xl lg:text-4xl font-black font-mono leading-none tracking-tight">{currentTime.toLocaleTimeString('id-ID', {timeZone: 'Asia/Jakarta'})}</div>
+                                    <div className="text-xs mt-2 opacity-80">{currentTime.toLocaleDateString('id-ID', {day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Asia/Jakarta'})}</div>
                                 </div>
                                 <div className="bg-white text-lks-blue p-6 font-bold flex flex-col justify-center h-1/2 rounded-none border border-slate-100 shadow-sm">
                                     <span className="text-xs font-bold block mb-2 opacity-80">Agenda Selanjutnya:</span>
@@ -263,7 +266,7 @@ function App() {
                                     <div key={m.id} className="p-5 bg-slate-50 flex items-center justify-between">
                                         <div>
                                             <h4 className="font-bold text-slate-800 text-lg">{m.title}</h4>
-                                            <p className="text-sm text-slate-500 mt-1">PIC: {m.pic} • Rilis: {new Date(m.releaseTime).toLocaleTimeString('id-ID')} WIB</p>
+                                            <p className="text-sm text-slate-500 mt-1">PIC: {m.pic} • Rilis: {new Date(m.releaseTime).toLocaleTimeString('id-ID', {timeZone: 'Asia/Jakarta'})} WIB</p>
                                         </div>
                                         {isReleased ? (
                                             <a href={m.link} target="_blank" rel="noreferrer" className="bg-[#2982c5] text-white px-8 py-4 text-lg font-bold transition hover:bg-sky-600 shadow-md">Buka Modul</a>
@@ -350,7 +353,7 @@ function App() {
                                                 return (
                                                     <tr key={s.id} className={`transition-colors border-b border-slate-200 ${isNow ? 'bg-sky-100 font-bold' : 'hover:bg-slate-50 bg-white'}`}>
                                                         <td className="py-4 px-6 font-mono text-sm whitespace-nowrap">
-                                                            {new Date(s.start).toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'})} - {new Date(s.end).toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'})}
+                                                            {new Date(s.start).toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit', timeZone: 'Asia/Jakarta'})} - {new Date(s.end).toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit', timeZone: 'Asia/Jakarta'})}
                                                         </td>
                                                         <td className={`py-4 px-6 ${isNow ? 'text-lks-blue' : 'text-slate-800'}`}>
                                                             {s.title}
