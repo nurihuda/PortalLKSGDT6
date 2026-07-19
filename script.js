@@ -123,9 +123,9 @@ function App() {
     const timerRef = useRef(null);
 
     const [db, setDb] = useState({ config: {}, modules: [], schedule: [], importantLinks: [] });
-    const [pesertaList] = useState(window.DATA_PESERTA || []);
+    const [pesertaList, setPesertaList] = useState(window.DATA_PESERTA || []);
 
-    // Fetch JSON
+    // Fetch JSON statis
     useEffect(() => {
         fetch('data.json')
             .then(res => res.json())
@@ -133,19 +133,45 @@ function App() {
             .catch(err => console.error(err));
     }, []);
 
-    // Listener Full Screen Native API
+    // Fetch Data Google Sheets menggunakan PapaParse secara dinamis (HANYA BILA ADA URL CSV PUBLIK)
+    // Trik "Publish to Web" => "CSV" ini membuat Sheet jadi realtime API gratis tanpa limit!
+    useEffect(() => {
+        // Ganti URL ini dengan URL CSV "Publish to Web" dari Google Sheet Anda
+        // Format Google Sheet wajib: no, nama, link (sebagai header kolom baris pertama)
+        const sheetCsvUrl = ""; // Kosongkan jika ingin memakai data window.DATA_PESERTA lokal
+        
+        if (sheetCsvUrl && window.Papa) {
+            window.Papa.parse(sheetCsvUrl, {
+                download: true,
+                header: true,
+                complete: function(results) {
+                    if (results.data && results.data.length > 0) {
+                        const validData = results.data.filter(p => p.no && p.nama);
+                        setPesertaList(validData);
+                    }
+                },
+                error: function(err) {
+                    console.error("Gagal sinkronisasi Google Sheet, memakai data dummy:", err);
+                    setPesertaList(window.DATA_PESERTA || []);
+                }
+            });
+        }
+    }, []);
+
+    // Listener Full Screen API
     useEffect(() => {
         const handleFullscreen = () => setIsFullscreen(!!document.fullscreenElement);
         document.addEventListener('fullscreenchange', handleFullscreen);
         return () => document.removeEventListener('fullscreenchange', handleFullscreen);
     }, []);
 
-    // Engine Jam WIB
+    // Engine Jam WIB Real-Time
     useEffect(() => {
         const interval = setInterval(() => setCurrentTime(getWIBTime()), 1000);
         return () => clearInterval(interval);
     }, []);
 
+    // Panel Admin
     useEffect(() => {
         if (searchQuery.toLowerCase() === 'admin123') {
             setView('admin');
@@ -194,30 +220,27 @@ function App() {
     return (
         <div className="flex flex-col h-screen w-screen overflow-hidden bg-white font-karla">
             
-            {/* --- HEADER (1/6) MARGIN KANAN KIRI DIPERBESAR, SEKAT HITAM HILANG (border-0) --- */}
-            <header className="h-[16.6vh] w-full shrink-0 flex items-center justify-between px-24 lg:px-32 bg-white border-0 relative z-20">
+            {/* --- HEADER (1/6) MARGIN DIPERBESAR, SEKAT HILANG --- */}
+            <header className="h-[16.6vh] w-full shrink-0 flex items-center justify-between px-24 lg:px-32 bg-white relative z-20">
                 <BackgroundPattern className="absolute inset-0 w-full h-full object-cover -z-10" />
                 <button onClick={() => setView('dashboard')} className="max-h-[85%] w-72 flex items-center justify-center transition hover:opacity-95 focus:outline-none cursor-pointer bg-white px-2 py-1 z-20">
                     <LogoGdtSkills className="w-full h-auto object-contain" />
                 </button>
-                <div className="flex items-center gap-6 z-20 bg-white px-4 py-2">
-                    <button onClick={() => setView('dashboard')} className="text-center transition hover:opacity-95 focus:outline-none cursor-pointer hidden md:block">
-                        <h1 className="text-xl md:text-3xl font-extrabold tracking-tight text-lks-pink">
-                            {db.config.headline || "LKSN GDT 2026"}
-                        </h1>
-                    </button>
-                </div>
+                <button onClick={() => setView('dashboard')} className="z-20 bg-white px-8 py-3 text-center transition hover:opacity-95 focus:outline-none cursor-pointer hidden md:block">
+                    <h1 className="text-xl md:text-3xl font-extrabold tracking-tight text-lks-pink">
+                        {db.config.headline || "LKSN GDT 2026"}
+                    </h1>
+                </button>
             </header>
 
-            {/* --- MAIN AREA (4/6) MARGIN KANAN KIRI BESAR --- */}
+            {/* --- MAIN AREA (4/6) MARGIN DIPERBESAR --- */}
             <main className="h-[66.8vh] w-full px-24 lg:px-32 py-6 bg-slate-50/40 shrink-0 overflow-y-auto">
                 
                 {view === 'dashboard' && (
                     <div className="w-full h-full flex flex-col md:flex-row gap-8">
-                        {/* COUNTDOWN BOX -> ADA FITUR FULLSCREEN */}
+                        {/* COUNTDOWN BOX WITH FULLSCREEN TRIGGER */}
                         <div ref={timerRef} className={`bg-white rounded-none flex flex-col items-center justify-center relative ${isFullscreen ? 'w-screen h-screen fixed inset-0 z-50 p-12' : 'w-full md:w-3/4'}`}>
                             
-                            {/* TOMBOL FULLSCREEN */}
                             <button onClick={toggleFullscreen} className="absolute top-4 right-4 text-slate-300 hover:text-lks-blue transition cursor-pointer bg-transparent border-0 outline-none">
                                 {isFullscreen ? <IconMinimize /> : <IconMaximize />}
                             </button>
@@ -225,7 +248,6 @@ function App() {
                             <h2 className={`font-extrabold text-lks-pink tracking-wide select-none ${isFullscreen ? 'text-3xl lg:text-5xl mb-6' : 'text-xl md:text-2xl mb-0'}`}>
                                 &lt;&lt; {activeAgenda ? activeAgenda.title : "Menunggu Sesi Dimulai"} &gt;&gt;
                             </h2>
-                            {/* ANGKA TIMER RESPONSIVE TERHADAP FULLSCREEN */}
                             <div className={`font-bold text-lks-blue leading-none tracking-tight select-none flex items-center justify-center ${isFullscreen ? 'text-[22vw]' : 'text-[15vw] lg:text-[130pt]'}`}>
                                 {hours}:{minutes}:{seconds}
                             </div>
@@ -234,7 +256,6 @@ function App() {
                             </p>
                         </div>
 
-                        {/* WIDGET KANAN GREEN BOX */}
                         {!isFullscreen && (
                             <div className="w-full md:w-1/4 flex flex-col justify-between gap-4">
                                 <div className="bg-lks-green text-white p-6 font-bold flex flex-col justify-center h-1/2 rounded-none">
@@ -267,7 +288,7 @@ function App() {
                                             <p className="text-sm text-slate-500 mt-1">PIC: {m.pic} • Rilis: {new Date(m.releaseTime).toLocaleTimeString('id-ID')} WIB</p>
                                         </div>
                                         {isReleased ? (
-                                            <a href={m.link} target="_blank" rel="noreferrer" className="bg-lks-blue text-white px-8 py-4 text-lg font-bold transition hover:bg-sky-700 shadow-md">Buka Modul</a>
+                                            <a href={m.link} target="_blank" rel="noreferrer" className="bg-[#2982c5] text-white px-8 py-4 text-lg font-bold transition hover:bg-sky-600 shadow-md">Buka Modul</a>
                                         ) : (
                                             <button disabled className="bg-slate-300 text-slate-500 px-8 py-4 text-lg font-bold cursor-not-allowed">Terkunci</button>
                                         )}
@@ -278,7 +299,7 @@ function App() {
                     </div>
                 )}
 
-                {/* VIEW 2: FOLDER PENGUMPULAN */}
+                {/* VIEW 2: FOLDER PENGUMPULAN & EDUKASI AKSES */}
                 {view === 'peserta' && (
                     <div className="bg-white p-6 max-h-full flex flex-col h-full">
                         <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-3 border-b border-slate-200 pb-3 mb-4 shrink-0">
@@ -292,21 +313,31 @@ function App() {
                                 <input type="text" placeholder="Cari No / Nama..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className="text-sm px-4 py-2 border border-slate-200 bg-white focus:outline-none w-56"/>
                             </div>
                         </div>
+
+                        {/* BANNER EDUKASI AKSES FOLDER */}
+                        <div className="bg-sky-50 border-l-4 border-lks-blue p-4 mb-5 flex items-start gap-3 shrink-0">
+                            <span className="text-lks-blue text-lg">ℹ️</span>
+                            <div>
+                                <h4 className="text-sm font-bold text-slate-800">Tidak memiliki akses ke folder?</h4>
+                                <p className="text-sm text-slate-600 mt-0.5">Sistem membatasi akses melalui <i>email whitelist</i>. Pastikan Anda <b>login dengan email Gmail baru</b> yang didaftarkan pada saat pendataan peserta LKS Nasional.</p>
+                            </div>
+                        </div>
+
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 overflow-y-auto flex-1">
                             {processedPeserta.map((p, idx) => (
                                 <div key={idx} className="p-4 bg-slate-50 flex flex-col xl:flex-row xl:items-center justify-between text-base hover:bg-slate-100 transition gap-4">
                                     <div className="flex items-center">
-                                        <span className="font-mono bg-lks-blue/10 text-lks-blue px-3 py-1 font-bold mr-3">{p.no}</span>
+                                        <span className="font-mono bg-sky-100 text-lks-blue px-3 py-1 font-bold mr-3">{p.no}</span>
                                         <span className="font-bold text-slate-800">{p.nama}</span>
                                     </div>
-                                    <a href={p.link} target="_blank" rel="noreferrer" className="bg-lks-blue hover:bg-sky-600 transition text-white px-8 py-4 font-bold text-center shadow-md text-base whitespace-nowrap">Buka Folder</a>
+                                    <a href={p.link} target="_blank" rel="noreferrer" className="bg-[#2982c5] hover:bg-sky-600 transition text-white px-8 py-4 font-bold text-center shadow-md text-base whitespace-nowrap">Buka Folder</a>
                                 </div>
                             ))}
                         </div>
                     </div>
                 )}
 
-                {/* VIEW 3: JADWAL KOMPETISI (FORMAT TABEL + HIGHLIGHT) */}
+                {/* VIEW 3: JADWAL KOMPETISI */}
                 {view === 'schedule' && (
                     <div className="bg-white p-6 max-h-full overflow-y-auto w-full">
                         <div className="border-b border-slate-200 pb-3 mb-4"><h3 className="text-xl font-extrabold text-lks-blue">Jadwal Kompetisi Nasional</h3></div>
@@ -351,7 +382,7 @@ function App() {
                                                         <td className="py-4 px-6 text-sm text-slate-600 whitespace-nowrap">{s.pic}</td>
                                                         <td className="py-4 px-6 text-center whitespace-nowrap">
                                                             {isNow ? (
-                                                                <span className="bg-lks-blue text-white px-4 py-1.5 text-xs font-bold rounded-full animate-pulse shadow-sm">Berlangsung</span>
+                                                                <span className="bg-[#2982c5] text-white px-4 py-1.5 text-xs font-bold rounded-full animate-pulse shadow-sm">Berlangsung</span>
                                                             ) : isPast ? (
                                                                 <span className="bg-slate-200 text-slate-500 px-4 py-1.5 text-xs font-bold rounded-full">Selesai</span>
                                                             ) : (
@@ -375,7 +406,7 @@ function App() {
                         <div className="border-b border-slate-200 pb-3 mb-4"><h3 className="text-xl font-extrabold text-lks-blue">Link-Link Penting Kompetisi</h3></div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             {db.importantLinks?.map((l, idx) => (
-                                <a key={idx} href={l.url} target="_blank" rel="noreferrer" className="p-5 bg-slate-50 hover:bg-lks-blue hover:text-white border-l-4 border-lks-blue flex items-center justify-between group transition-colors">
+                                <a key={idx} href={l.url} target="_blank" rel="noreferrer" className="p-5 bg-slate-50 hover:bg-[#2982c5] hover:text-white border-l-4 border-lks-blue flex items-center justify-between group transition-colors">
                                     <span className="font-bold text-lg text-slate-700 group-hover:text-white transition-colors">{l.label}</span>
                                     <span className="text-sm text-lks-blue group-hover:text-white font-bold transition-colors">Kunjungi →</span>
                                 </a>
@@ -392,30 +423,30 @@ function App() {
                             <button onClick={() => setView('dashboard')} className="text-xs font-bold bg-slate-100 px-3 py-2 transition">Tutup</button>
                         </div>
                         <div className="text-sm text-slate-500 leading-relaxed">
-                            Fungsi Waktu sekarang berjalan mandiri dan kebal dari manipulasi dengan menyinkronisasikan jam laptop secara paksa ke dalam standar <b>Waktu Indonesia Barat (WIB)</b> mengikuti jadwal <code>data.json</code>.
+                            Aplikasi kini dipersenjatai dengan <b>PapaParse CDN</b> untuk penarikan data peserta <i>Real-time</i> via Google Sheets Public CSV.
                         </div>
                     </div>
                 )}
             </main>
 
-            {/* --- FOOTER NAVIGATION (1/6) TOMBOL BACKGROUND PUTIH BERSIH --- */}
-            <footer className="h-[16.6vh] relative w-full shrink-0 border-0 bg-white z-20">
-                <BackgroundPattern className="absolute inset-0 w-full h-full object-cover rotate-180 -z-10" />
+            {/* --- FOOTER (1/6) TOMBOL PUTIH, TEKS BIRU, UKURAN -10%, TANPA SEKAT GARIS --- */}
+            <footer className="h-[16.6vh] relative w-full shrink-0 bg-white border-0">
+                <BackgroundPattern className="absolute inset-0 w-full h-full object-cover rotate-180 z-0" />
                 <div className="absolute inset-0 flex items-center justify-center gap-6 px-24 lg:px-32 z-10 w-full h-full py-4">
                     
-                    <button onClick={() => setView('modules')} className={`bg-white border-0 font-semibold h-[76.5%] w-[22.5%] flex items-center justify-center text-[20pt] xl:text-[24pt] transition-all cursor-pointer hover:shadow-lg ${view === 'modules' ? 'bg-sky-100 text-sky-700 shadow-inner scale-[0.98]' : 'text-lks-blue hover:bg-slate-50 hover:-translate-y-1'}`}>
+                    <button onClick={() => setView('modules')} className={`bg-white border-0 text-[#2982c5] font-semibold h-[76.5%] w-[22.5%] flex items-center justify-center text-[20pt] xl:text-[24pt] transition-all cursor-pointer hover:shadow-lg ${view === 'modules' ? 'bg-sky-50 shadow-inner scale-[0.98]' : 'hover:bg-slate-50 hover:-translate-y-1'}`}>
                         Akses Modul
                     </button>
 
-                    <button onClick={() => setView('peserta')} className={`bg-white border-0 font-semibold h-[76.5%] w-[22.5%] flex items-center justify-center text-[20pt] xl:text-[24pt] transition-all cursor-pointer hover:shadow-lg ${view === 'peserta' ? 'bg-sky-100 text-sky-700 shadow-inner scale-[0.98]' : 'text-lks-blue hover:bg-slate-50 hover:-translate-y-1'}`}>
+                    <button onClick={() => setView('peserta')} className={`bg-white border-0 text-[#2982c5] font-semibold h-[76.5%] w-[22.5%] flex items-center justify-center text-[20pt] xl:text-[24pt] transition-all cursor-pointer hover:shadow-lg ${view === 'peserta' ? 'bg-sky-50 shadow-inner scale-[0.98]' : 'hover:bg-slate-50 hover:-translate-y-1'}`}>
                         Folder Pengumpulan
                     </button>
 
-                    <button onClick={() => setView('schedule')} className={`bg-white border-0 font-semibold h-[76.5%] w-[22.5%] flex items-center justify-center text-[20pt] xl:text-[24pt] transition-all cursor-pointer hover:shadow-lg ${view === 'schedule' ? 'bg-sky-100 text-sky-700 shadow-inner scale-[0.98]' : 'text-lks-blue hover:bg-slate-50 hover:-translate-y-1'}`}>
+                    <button onClick={() => setView('schedule')} className={`bg-white border-0 text-[#2982c5] font-semibold h-[76.5%] w-[22.5%] flex items-center justify-center text-[20pt] xl:text-[24pt] transition-all cursor-pointer hover:shadow-lg ${view === 'schedule' ? 'bg-sky-50 shadow-inner scale-[0.98]' : 'hover:bg-slate-50 hover:-translate-y-1'}`}>
                         Jadwal Kompetisi
                     </button>
 
-                    <button onClick={() => setView('links')} className={`bg-white border-0 font-semibold h-[76.5%] w-[22.5%] flex items-center justify-center text-[20pt] xl:text-[24pt] transition-all cursor-pointer hover:shadow-lg ${view === 'links' ? 'bg-sky-100 text-sky-700 shadow-inner scale-[0.98]' : 'text-lks-blue hover:bg-slate-50 hover:-translate-y-1'}`}>
+                    <button onClick={() => setView('links')} className={`bg-white border-0 text-[#2982c5] font-semibold h-[76.5%] w-[22.5%] flex items-center justify-center text-[20pt] xl:text-[24pt] transition-all cursor-pointer hover:shadow-lg ${view === 'links' ? 'bg-sky-50 shadow-inner scale-[0.98]' : 'hover:bg-slate-50 hover:-translate-y-1'}`}>
                         Link Link Penting
                     </button>
 
