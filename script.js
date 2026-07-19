@@ -75,10 +75,11 @@ const BackgroundPattern = ({ className }) => (
     </svg>
 );
 
+// UPDATE LOGO GDTSKILLS
 const LogoGdtSkills = ({ className }) => (
     <svg className={className} id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 270.61 71.33" width="100%" height="100%">
         <defs>
-            <style>{`.cls-g1{fill:#14a94b;}.cls-g2{fill:#5f2f11;}`}</style>
+            <style>{`.cls-g1{fill:#00a931;}.cls-g2{fill:#602c05;}`}</style>
         </defs>
         <g>
             <g id="t"><path className="cls-g2" d="M167.66,49.88c-5.88,0-8.73-2.7-8.73-8.25v-6.9c0-.99-.81-1.77-1.8-1.78-.57,0-1.03-.47-1.03-1.04v-3.55c0-.63.42-1.16,1.02-1.35,1.8-.58,1.81-2.68,1.81-2.68v-3.01c0-.78.63-1.41,1.41-1.41h6.47c.78,0,1.41.63,1.41,1.41v4.65h4.16c.78,0,1.41.63,1.41,1.41v4.17c0,.78-.63,1.41-1.41,1.41h-4.16v6.47c0,1.92.92,2.85,2.8,2.85.44,0,.92-.06,1.41-.17.08-.02.16-.03.23-.03.57,0,1.04.47,1.04,1.04v4.86c0,.43-.27.82-.68.98-1.51.59-3.47.93-5.36.93h0Z"/></g>
@@ -123,7 +124,7 @@ function App() {
     const timerRef = useRef(null);
 
     const [db, setDb] = useState({ config: {}, modules: [], schedule: [], importantLinks: [] });
-    const [pesertaList, setPesertaList] = useState(window.DATA_PESERTA || []);
+    const [pesertaList] = useState(window.DATA_PESERTA || []);
 
     // Fetch JSON statis
     useEffect(() => {
@@ -131,31 +132,6 @@ function App() {
             .then(res => res.json())
             .then(data => setDb(data))
             .catch(err => console.error(err));
-    }, []);
-
-    // Fetch Data Google Sheets menggunakan PapaParse secara dinamis (HANYA BILA ADA URL CSV PUBLIK)
-    // Trik "Publish to Web" => "CSV" ini membuat Sheet jadi realtime API gratis tanpa limit!
-    useEffect(() => {
-        // Ganti URL ini dengan URL CSV "Publish to Web" dari Google Sheet Anda
-        // Format Google Sheet wajib: no, nama, link (sebagai header kolom baris pertama)
-        const sheetCsvUrl = ""; // Kosongkan jika ingin memakai data window.DATA_PESERTA lokal
-        
-        if (sheetCsvUrl && window.Papa) {
-            window.Papa.parse(sheetCsvUrl, {
-                download: true,
-                header: true,
-                complete: function(results) {
-                    if (results.data && results.data.length > 0) {
-                        const validData = results.data.filter(p => p.no && p.nama);
-                        setPesertaList(validData);
-                    }
-                },
-                error: function(err) {
-                    console.error("Gagal sinkronisasi Google Sheet, memakai data dummy:", err);
-                    setPesertaList(window.DATA_PESERTA || []);
-                }
-            });
-        }
     }, []);
 
     // Listener Full Screen API
@@ -220,26 +196,27 @@ function App() {
     return (
         <div className="flex flex-col h-screen w-screen overflow-hidden bg-white font-karla">
             
-            {/* --- HEADER (1/6) MARGIN DIPERBESAR, SEKAT HILANG --- */}
-            <header className="h-[16.6vh] w-full shrink-0 flex items-center justify-between px-24 lg:px-32 bg-white relative z-20">
-                <BackgroundPattern className="absolute inset-0 w-full h-full object-cover -z-10" />
+            {/* --- HEADER (1/6) MARGIN KANAN KIRI DIPERBESAR (px-12 md:px-24), GRAFIS HILANG --- */}
+            <header className="h-[16.6vh] w-full shrink-0 flex items-center justify-between px-12 lg:px-24 bg-white relative z-20">
                 <button onClick={() => setView('dashboard')} className="max-h-[85%] w-72 flex items-center justify-center transition hover:opacity-95 focus:outline-none cursor-pointer bg-white px-2 py-1 z-20">
                     <LogoGdtSkills className="w-full h-auto object-contain" />
                 </button>
-                <button onClick={() => setView('dashboard')} className="z-20 bg-white px-8 py-3 text-center transition hover:opacity-95 focus:outline-none cursor-pointer hidden md:block">
-                    <h1 className="text-xl md:text-3xl font-extrabold tracking-tight text-lks-pink">
-                        {db.config.headline || "LKSN GDT 2026"}
-                    </h1>
-                </button>
+                <div className="flex items-center gap-6 z-20 bg-white px-4 py-2">
+                    <button onClick={() => setView('dashboard')} className="text-center transition hover:opacity-95 focus:outline-none cursor-pointer hidden md:block">
+                        <h1 className="text-xl md:text-3xl font-extrabold tracking-tight text-lks-pink">
+                            {db.config.headline || "LKSN GDT 2026"}
+                        </h1>
+                    </button>
+                </div>
             </header>
 
-            {/* --- MAIN AREA (4/6) MARGIN DIPERBESAR --- */}
-            <main className="h-[66.8vh] w-full px-24 lg:px-32 py-6 bg-slate-50/40 shrink-0 overflow-y-auto">
+            {/* --- MAIN AREA (4/6) MARGIN KANAN KIRI BESAR (px-12 md:px-24) --- */}
+            <main className="h-[66.8vh] w-full px-12 lg:px-24 py-6 bg-slate-50/40 shrink-0 overflow-y-auto">
                 
                 {view === 'dashboard' && (
                     <div className="w-full h-full flex flex-col md:flex-row gap-8">
                         {/* COUNTDOWN BOX WITH FULLSCREEN TRIGGER */}
-                        <div ref={timerRef} className={`bg-white rounded-none flex flex-col items-center justify-center relative ${isFullscreen ? 'w-screen h-screen fixed inset-0 z-50 p-12' : 'w-full md:w-3/4'}`}>
+                        <div ref={timerRef} className={`bg-white rounded-none flex flex-col items-center justify-center relative shadow-sm ${isFullscreen ? 'w-screen h-screen fixed inset-0 z-50 p-12' : 'w-full md:w-3/4'}`}>
                             
                             <button onClick={toggleFullscreen} className="absolute top-4 right-4 text-slate-300 hover:text-lks-blue transition cursor-pointer bg-transparent border-0 outline-none">
                                 {isFullscreen ? <IconMinimize /> : <IconMaximize />}
@@ -256,15 +233,16 @@ function App() {
                             </p>
                         </div>
 
+                        {/* WIDGET KANAN (BACKGROUND PUTIH, TEKS BIRU) */}
                         {!isFullscreen && (
                             <div className="w-full md:w-1/4 flex flex-col justify-between gap-4">
-                                <div className="bg-lks-green text-white p-6 font-bold flex flex-col justify-center h-1/2 rounded-none">
-                                    <span className="text-xs font-bold text-emerald-100 block mb-2">Waktu Sistem (WIB):</span>
+                                <div className="bg-white text-lks-blue p-6 font-bold flex flex-col justify-center h-1/2 rounded-none border border-slate-100 shadow-sm">
+                                    <span className="text-xs font-bold block mb-2 opacity-80">Waktu Sistem (WIB):</span>
                                     <div className="text-3xl lg:text-4xl font-black font-mono leading-none tracking-tight">{currentTime.toLocaleTimeString('id-ID')}</div>
-                                    <div className="text-xs text-emerald-100/90 mt-2">{currentTime.toLocaleDateString('id-ID', {day: 'numeric', month: 'long', year: 'numeric'})}</div>
+                                    <div className="text-xs mt-2 opacity-80">{currentTime.toLocaleDateString('id-ID', {day: 'numeric', month: 'long', year: 'numeric'})}</div>
                                 </div>
-                                <div className="bg-lks-green text-white p-6 font-bold flex flex-col justify-center h-1/2 rounded-none">
-                                    <span className="text-xs font-bold text-emerald-100 block mb-2">Agenda Selanjutnya:</span>
+                                <div className="bg-white text-lks-blue p-6 font-bold flex flex-col justify-center h-1/2 rounded-none border border-slate-100 shadow-sm">
+                                    <span className="text-xs font-bold block mb-2 opacity-80">Agenda Selanjutnya:</span>
                                     <p className="text-lg lg:text-xl leading-snug font-extrabold">
                                         {nextAgenda ? nextAgenda.title : "Seluruh Rangkaian Agenda Selesai"}
                                     </p>
@@ -276,7 +254,7 @@ function App() {
 
                 {/* VIEW 1: AKSES MODUL */}
                 {view === 'modules' && (
-                    <div className="bg-white p-6 max-h-full overflow-y-auto">
+                    <div className="bg-white p-6 max-h-full overflow-y-auto shadow-sm">
                         <div className="border-b border-slate-200 pb-3 mb-4"><h3 className="text-xl font-extrabold text-lks-blue">Modul Soal LKSN</h3></div>
                         <div className="space-y-4">
                             {db.modules.map((m) => {
@@ -301,7 +279,7 @@ function App() {
 
                 {/* VIEW 2: FOLDER PENGUMPULAN & EDUKASI AKSES */}
                 {view === 'peserta' && (
-                    <div className="bg-white p-6 max-h-full flex flex-col h-full">
+                    <div className="bg-white p-6 max-h-full flex flex-col h-full shadow-sm">
                         <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-3 border-b border-slate-200 pb-3 mb-4 shrink-0">
                             <h3 className="text-xl font-extrabold text-lks-blue">Folder Pengumpulan Tugas</h3>
                             <div className="flex items-center gap-2">
@@ -314,12 +292,11 @@ function App() {
                             </div>
                         </div>
 
-                        {/* BANNER EDUKASI AKSES FOLDER */}
                         <div className="bg-sky-50 border-l-4 border-lks-blue p-4 mb-5 flex items-start gap-3 shrink-0">
                             <span className="text-lks-blue text-lg">ℹ️</span>
                             <div>
-                                <h4 className="text-sm font-bold text-slate-800">Tidak memiliki akses ke folder?</h4>
-                                <p className="text-sm text-slate-600 mt-0.5">Sistem membatasi akses melalui <i>email whitelist</i>. Pastikan Anda <b>login dengan email Gmail baru</b> yang didaftarkan pada saat pendataan peserta LKS Nasional.</p>
+                                <h4 className="text-sm font-bold text-slate-800">Tidak bisa akses folder?</h4>
+                                <p className="text-sm text-slate-600 mt-0.5">Sistem membatasi akses melalui <i>email whitelist</i>. Pastikan Anda <b>login dengan email Gmail baru</b> yang didaftarkan pada saat pendataan peserta.</p>
                             </div>
                         </div>
 
@@ -337,9 +314,9 @@ function App() {
                     </div>
                 )}
 
-                {/* VIEW 3: JADWAL KOMPETISI */}
+                {/* VIEW 3: JADWAL KOMPETISI (FORMAT TABEL + HIGHLIGHT) */}
                 {view === 'schedule' && (
-                    <div className="bg-white p-6 max-h-full overflow-y-auto w-full">
+                    <div className="bg-white p-6 max-h-full overflow-y-auto w-full shadow-sm">
                         <div className="border-b border-slate-200 pb-3 mb-4"><h3 className="text-xl font-extrabold text-lks-blue">Jadwal Kompetisi Nasional</h3></div>
                         <div className="w-full overflow-x-auto">
                             <table className="w-full text-left border-collapse min-w-[800px]">
@@ -402,7 +379,7 @@ function App() {
 
                 {/* VIEW 4: LINK PENTING */}
                 {view === 'links' && (
-                    <div className="bg-white p-6 max-h-full overflow-y-auto">
+                    <div className="bg-white p-6 max-h-full overflow-y-auto shadow-sm">
                         <div className="border-b border-slate-200 pb-3 mb-4"><h3 className="text-xl font-extrabold text-lks-blue">Link-Link Penting Kompetisi</h3></div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             {db.importantLinks?.map((l, idx) => (
@@ -417,22 +394,22 @@ function App() {
 
                 {/* VIEW RAHASIA: ADMIN */}
                 {view === 'admin' && (
-                    <div className="bg-white border border-lks-pink p-6 max-w-xl mx-auto">
+                    <div className="bg-white border border-lks-pink p-6 max-w-xl mx-auto shadow-sm">
                         <div className="flex justify-between items-center border-b border-slate-200 pb-2 mb-4">
                             <h2 className="font-black text-lks-pink text-sm uppercase">Admin Panel LKSN</h2>
-                            <button onClick={() => setView('dashboard')} className="text-xs font-bold bg-slate-100 px-3 py-2 transition">Tutup</button>
+                            <button onClick={() => setView('dashboard')} className="text-xs font-bold bg-slate-100 px-3 py-2 transition hover:bg-slate-200">Tutup</button>
                         </div>
                         <div className="text-sm text-slate-500 leading-relaxed">
-                            Aplikasi kini dipersenjatai dengan <b>PapaParse CDN</b> untuk penarikan data peserta <i>Real-time</i> via Google Sheets Public CSV.
+                            Fungsi Waktu berjalan mandiri dan kebal dari manipulasi dengan menyinkronisasikan jam laptop secara paksa ke dalam standar <b>Waktu Indonesia Barat (WIB)</b> mengikuti jadwal <code>data.json</code>.
                         </div>
                     </div>
                 )}
             </main>
 
             {/* --- FOOTER (1/6) TOMBOL PUTIH, TEKS BIRU, UKURAN -10%, TANPA SEKAT GARIS --- */}
-            <footer className="h-[16.6vh] relative w-full shrink-0 bg-white border-0">
-                <BackgroundPattern className="absolute inset-0 w-full h-full object-cover rotate-180 z-0" />
-                <div className="absolute inset-0 flex items-center justify-center gap-6 px-24 lg:px-32 z-10 w-full h-full py-4">
+            <footer className="h-[16.6vh] relative w-full shrink-0 bg-white border-0 z-20">
+                <BackgroundPattern className="absolute inset-0 w-full h-full object-cover rotate-180 -z-10" />
+                <div className="absolute inset-0 flex items-center justify-center gap-6 px-12 lg:px-24 z-10 w-full h-full py-4">
                     
                     <button onClick={() => setView('modules')} className={`bg-white border-0 text-[#2982c5] font-semibold h-[76.5%] w-[22.5%] flex items-center justify-center text-[20pt] xl:text-[24pt] transition-all cursor-pointer hover:shadow-lg ${view === 'modules' ? 'bg-sky-50 shadow-inner scale-[0.98]' : 'hover:bg-slate-50 hover:-translate-y-1'}`}>
                         Akses Modul
