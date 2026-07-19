@@ -5,10 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LKSN GDT 2026 - Live Scoreboard</title>
 
+    <!-- INJEKSI FAVICON SVG KUSTOM BARU -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 71.33 71.33'><defs><style>.cls-1 { fill: %23602c05; }</style></defs><g id='_7' data-name=' 7'><path class='cls-1' d='M35.67,71.33c-2.06,0-3.72-1.67-3.72-3.72v-10.65c0-2.06,1.67-3.72,3.72-3.72s3.72,1.67,3.72,3.72v10.65c0,2.06-1.67,3.72-3.72,3.72Z'/></g><g id='_6' data-name=' 6'><path class='cls-1' d='M58.25,61.97c-.95,0-1.9-.36-2.63-1.09l-7.53-7.53c-1.45-1.45-1.45-3.81,0-5.26s3.81-1.45,5.26,0l7.53,7.53c1.45,1.45,1.45,3.81,0,5.26-.73.73-1.68,1.09-2.63,1.09Z'/></g><g id='_5' data-name=' 5'><path class='cls-1' d='M67.61,39.39h-10.65c-2.06,0-3.72-1.67-3.72-3.72s1.67-3.72,3.72-3.72h10.65c2.06,0,3.72,1.67,3.72,3.72s-1.67,3.72-3.72,3.72h0Z'/></g><g id='_4' data-name=' 4'><path class='cls-1' d='M50.72,24.33c-.95,0-1.9-.36-2.63-1.09-1.45-1.45-1.45-3.81,0-5.26l7.53-7.53c1.45-1.45,3.81-1.45,5.26,0,1.45,1.45,1.45,3.81,0,5.26l-7.53,7.53c-.73.73-1.68,1.09-2.63,1.09h0Z'/></g><g id='_3' data-name=' 3'><path class='cls-1' d='M35.67,18.09c-2.06,0-3.72-1.67-3.72-3.72V3.72c0-2.06,1.67-3.72,3.72-3.72s3.72,1.67,3.72,3.72v10.65c0,2.06-1.67,3.72-3.72,3.72Z'/></g><g id='_2' data-name=' 2'><path class='cls-1' d='M20.61,24.33c-.95,0-1.9-.36-2.63-1.09l-7.53-7.53c-1.45-1.45-1.45-3.81,0-5.26,1.45-1.45,3.81-1.45,5.26,0l7.53,7.53c1.45,1.45,1.45,3.81,0,5.26-.73.73-1.68,1.09-2.63,1.09h0Z'/></g><g id='_1' data-name=' 1'><path class='cls-1' d='M14.37,39.39H3.72c-2.06,0-3.72-1.67-3.72-3.72s1.67-3.72,3.72-3.72h10.65c2.06,0,3.72,1.67,3.72,3.72s-1.67,3.72-3.72,3.72h0Z'/></g><g id='tongkat'><path class='cls-1' d='M13.08,61.97c-.95,0-1.9-.36-2.63-1.09-1.45-1.45-1.45-3.81,0-5.26l22.59-22.59c1.45-1.45,3.81-1.45,5.26,0,1.45,1.45,1.45,3.81,0,5.26l-22.59,22.59c-.73.73-1.68,1.09-2.63,1.09Z'/></g></svg>">
+
     <!-- 1. TAILWIND CSS v4 CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-    <!-- 2. REACT & DOM CDN (Production Mode) -->
+    <!-- 2. REACT & DOM CDN -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 
@@ -20,38 +23,29 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700;800&display=swap" rel="stylesheet">
 
-    <!-- 5. CONFIGURATION COLORS & VIEWPORT LOCK -->
- <!-- 5. CONFIGURATION COLORS & VIEWPORT LOCK -->
+    <!-- 5. CONFIGURATION COLORS & SEAMLESS OVERLAY OVERRIDES -->
     <style type="text/css">
         @theme {
-            --font-karla: "Karla", sans-serif;
+            --font-karla: 'Karla', sans-serif;
             --color-lks-blue: #2982c5;
             --color-lks-green: #03a550;
             --color-lks-pink: #e38ebc;
             --color-lks-yellow: #ffc836;
         }
-        
-        /* Memaksa seluruh elemen HTML menggunakan font Karla */
         * {
             font-family: "Karla", sans-serif !important;
         }
-
         body {
             background-color: #ffffff;
             margin: 0;
             padding: 0;
-            overflow: hidden; /* Mengunci view agar pas 5 baris screen tanpa scrolling */
+            overflow: hidden;
         }
     </style>
 </head>
 <body class="text-slate-900 select-none">
-
-    <!-- Aplikasi React akan dirender di sini -->
     <div id="root"></div>
-
-    <!-- 6. CORE APP JAVASCRIPT (Dimuat berurutan tanpa type="module") -->
     <script src="./peserta.js"></script>
     <script type="text/babel" src="./script.js"></script>
-
 </body>
 </html>
