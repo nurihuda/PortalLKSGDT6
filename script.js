@@ -1,6 +1,5 @@
 const { useState, useEffect, useMemo } = React;
 
-// 1. INJEKSI BACKGROUND PATTERN & LOGO SVG (DENGAN FIX VIEWBOX LOGO)
 const BackgroundPattern = ({ className }) => (
     <svg className={className} id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920.05 206.77" preserveAspectRatio="none">
         <defs>
@@ -79,7 +78,7 @@ const LogoGdtSkills = ({ className }) => (
         <g>
             <g id="t"><path className="cls-g2" d="M167.66,49.88c-5.88,0-8.73-2.7-8.73-8.25v-6.9c0-.99-.81-1.77-1.8-1.78-.57,0-1.03-.47-1.03-1.04v-3.55c0-.63.42-1.16,1.02-1.35,1.8-.58,1.81-2.68,1.81-2.68v-3.01c0-.78.63-1.41,1.41-1.41h6.47c.78,0,1.41.63,1.41,1.41v4.65h4.16c.78,0,1.41.63,1.41,1.41v4.17c0,.78-.63,1.41-1.41,1.41h-4.16v6.47c0,1.92.92,2.85,2.8,2.85.44,0,.92-.06,1.41-.17.08-.02.16-.03.23-.03.57,0,1.04.47,1.04,1.04v4.86c0,.43-.27.82-.68.98-1.51.59-3.47.93-5.36.93h0Z"/></g>
             <g id="d-2"><path className="cls-g2" d="M137.14,49.93c-5.8,0-10.02-5.09-10.02-12.09v-.09c0-7.16,4.18-12.36,9.93-12.36,3.62,0,5.56,1.61,6.97,3.19l.65.72v-10.06c0-.78.63-1.41,1.41-1.41h6.47c.78,0,1.41.63,1.41,1.41v28.7c0,.78-.63,1.41-1.41,1.41h-6.47c-.78,0-1.41-.63-1.41-1.41v-2.13l-.64.69c-1.67,1.8-3.45,3.42-6.89,3.42h0ZM140.5,32.91c-2.46,0-4.39,2.07-4.39,4.7v.09c0,2.64,1.93,4.7,4.39,4.7s4.39-2.07,4.39-4.7v-.09c0-2.64-1.93-4.7-4.39-4.7Z"/></g>
-            <g id="g"><path className="cls-g2" d="M111.29,59.82c-4.34,0-8-.69-11.53-2.18-.36-.15-.63-.44-.76-.8s-.11-.78.07-1.13l1.46-2.86c.24-.47.71-.75,1.24-.75.2,0,.4.04.58.13,2.45,1.09,4.79,1.59,7.34,1.59,3.25,0,5.36-1.45,5.94-4.07.07-.35.11-.7.13-1.08.01-.33-.1-.63-.32-.86-.23-.23-.54-.37-.87-.37-.29,0-.58.11-.8.31-1.12,1.02-2.78,2.19-5.68,2.19-5.8,0-10.02-5.09-10.02-12.09v-.09c0-7.16,4.18-12.36,9.93-12.36,3.62,0,5.56,1.61,6.97,3.19l.65.72v-1.93c0-.78.63-1.41,1.41-1.41h6.47c.78,0,1.41.63,1.41,1.41v19.56c0,4.45-.94,7.37-3.03,9.46-2.31,2.31-5.78,3.43-10.61,3.43h0ZM111.47,32.91c-2.46,0-4.39,2.07-4.39,4.7v.09c0,2.64,1.93,4.7,4.39,4.7s4.39-2.07,4.39-4.7v-.09c0-2.64-1.93-4.7-4.39-4.7Z"/></g>
+            <g id="g"><path className="cls-g2" d="M111.29,59.82c-4.34,0-8-.69-11.53-2.18-.36-.15-.63-.44-.76-.8s-.11-.78.07-1.13l1.46-2.86c.24-.47.71-.75,1.24-.75.2,0,.4.04.58.13,2.45,1.09,4.79,1.59,7.34,1.59,3.25,0,5.36-1.45,5.94-4.07.07-.35.11-.7gamma.13-1.08.01-.33-.1-.63-.32-.86-.23-.23-.54-.37-.87-.37-.29,0-.58.11-.8.31-1.12,1.02-2.78,2.19-5.68,2.19-5.8,0-10.02-5.09-10.02-12.09v-.09c0-7.16,4.18-12.36,9.93-12.36,3.62,0,5.56,1.61,6.97,3.19l.65.72v-1.93c0-.78.63-1.41,1.41-1.41h6.47c.78,0,1.41.63,1.41,1.41v19.56c0,4.45-.94,7.37-3.03,9.46-2.31,2.31-5.78,3.43-10.61,3.43h0ZM111.47,32.91c-2.46,0-4.39,2.07-4.39,4.7v.09c0,2.64,1.93,4.7,4.39,4.7s4.39-2.07,4.39-4.7v-.09c0-2.64-1.93-4.7-4.39-4.7Z"/></g>
             <g>
                 <path className="cls-g1" d="M177.67,45.95l1.15-2.61c.43-.97,1.56-1.44,2.53-1.02,2.19.95,4.86,1.51,7.32,1.51,3.06,0,4.06-.67,4.06-1.77,0-3.48-15.28.48-15.28-9.88,0-4.87,4.49-8.59,12.6-8.59,2.83,0,5.89.47,8.33,1.35,1.06.38,1.56,1.6,1.1,2.63l-1.14,2.59c-.42.96-1.53,1.37-2.51.97-1.99-.8-3.95-1.09-5.73-1.09-3.06,0-4.15.86-4.15,1.82,0,3.58,15.23-.29,15.23,9.98,0,4.77-4.39,8.5-12.79,8.5-3.51,0-7.11-.7-9.71-1.79-1-.42-1.44-1.59-1.01-2.58Z"/>
                 <path className="cls-g1" d="M215.43,40.82l-2.67,2.72v4.4c0,1.08-.88,1.95-1.95,1.95h-5.16c-1.08,0-1.95-.88-1.95-1.95v-31.41c0-1.14.92-2.06,2.06-2.06h5.05c1.08,0,1.95.88,1.95,1.95v16.62l8.69-8.47c.37-.36.85-.55,1.36-.55h5.33c1.73,0,2.61,2.08,1.4,3.32l-7.53,7.76,9.16,11.64c1.01,1.28.1,3.16-1.54,3.16h-6.01c-.59,0-1.16-.27-1.53-.73l-6.67-8.34Z"/>
@@ -153,22 +152,14 @@ function App() {
     return (
         <div className="flex flex-col h-screen w-screen overflow-hidden bg-white font-karla">
             
-            {/* --- BARIS 1: HEADER (1/5 TINGGI) WITH NARROW MARGIN --- */}
-            <header className="h-[20vh] relative w-full border-b-4 border-lks-blue shrink-0">
+            {/* --- BARIS 1: HEADER (1/6 SCREEN TINGGI H-[16.6VH]) --- */}
+            <header className="h-[16.6vh] relative w-full border-b-4 border-lks-blue shrink-0">
                 <BackgroundPattern className="absolute inset-0 w-full h-full object-cover" />
                 <div className="absolute inset-0 flex items-center justify-between px-16 z-10">
-                    {/* LOGO BOX - KLIK UNTUK KEMBALI KE HOME */}
-                    <button 
-                        onClick={() => setView('dashboard')} 
-                        className="bg-white p-2 border-0 shadow-none max-h-[85%] w-72 flex items-center justify-center transition hover:opacity-95 focus:outline-none cursor-pointer"
-                    >
+                    <button onClick={() => setView('dashboard')} className="bg-white p-2 border-0 shadow-none max-h-[85%] w-72 flex items-center justify-center transition hover:opacity-95 focus:outline-none cursor-pointer">
                         <LogoGdtSkills className="w-full h-auto object-contain" />
                     </button>
-                    {/* TEXT BOX - KLIK UNTUK KEMBALI KE HOME */}
-                    <button 
-                        onClick={() => setView('dashboard')} 
-                        className="bg-white px-8 py-3 border-0 shadow-none text-center transition hover:opacity-95 focus:outline-none cursor-pointer"
-                    >
+                    <button onClick={() => setView('dashboard')} className="bg-white px-8 py-3 border-0 shadow-none text-center transition hover:opacity-95 focus:outline-none cursor-pointer">
                         <h1 className="text-xl md:text-3xl font-extrabold tracking-tight text-lks-pink">
                             {db.config.headline || "LKSN GDT 2026"}
                         </h1>
@@ -176,25 +167,25 @@ function App() {
                 </div>
             </header>
 
-            {/* --- BARIS 2, 3, 4: MAIN AREA (3/5 TINGGI) WITH NARROW MARGIN --- */}
-            <main className="h-[60vh] w-full px-16 py-8 bg-slate-50/40 shrink-0 overflow-y-auto">
+            {/* --- BARIS 2, 3, 4: CENTER MAIN AREA (4/6 SCREEN TINGGI H-[66.8VH]) --- */}
+            <main className="h-[66.8vh] w-full px-16 py-6 bg-slate-50/40 shrink-0 overflow-y-auto">
                 
                 {view === 'dashboard' && (
                     <div className="w-full h-full flex flex-col md:flex-row gap-8">
-                        {/* TIMER KIRI (75% LEBAR) -> PURE KOTAK & FONT BIRU 180PT IDEAL */}
+                        {/* COUNTDOWN BOX KIRI -> PURE BOX TANPA HAPUS GARIS HORIZONTAL */}
                         <div className="w-full md:w-3/4 bg-white border-0 rounded-none flex flex-col items-center justify-center relative shadow-none">
-                            <h2 className="text-xl md:text-2xl font-extrabold text-lks-pink mb-0 select-none tracking-wide">&lt;&lt;Agenda Saat Ini&gt;&gt;</h2>
+                            <h2 className="text-xl md:text-2xl font-extrabold text-lks-pink mb-0 tracking-wide select-none">&lt;&lt;Agenda Saat Ini&gt;&gt;</h2>
                             <div className="text-[180pt] font-bold text-lks-blue leading-none tracking-tight select-none">
                                 {hours}:{minutes}:{seconds}
                             </div>
-                            <p className="text-xs md:text-sm font-bold text-lks-pink tracking-widest -mt-2">Jam : Menit : Detik</p>
+                            <p className="text-xs md:text-sm font-bold text-lks-pink tracking-widest -mt-2 select-none">Jam : Menit : Detik</p>
                         </div>
 
-                        {/* WIDGET KANAN (25% LEBAR) -> KOTAK HIJAU TEKS PUTIH POLOS */}
+                        {/* PURE GREEN BOX WIDGETS KANAN */}
                         <div className="w-full md:w-1/4 flex flex-col justify-between gap-4">
                             <div>
                                 <span className="text-xs font-bold text-lks-blue block mb-1">Waktu Sistem :</span>
-                                <div className="bg-lks-green text-white p-4 rounded-none font-bold border-0 shadow-none">
+                                <div className="bg-lks-green text-white p-4 rounded-none border-0 shadow-none">
                                     <div className="text-2xl font-black font-mono">{currentTime.toLocaleTimeString('id-ID')} WIB</div>
                                     <div className="text-xs text-emerald-100/90 mt-0.5">{currentTime.toLocaleDateString('id-ID', {day: 'numeric', month: 'long', year: 'numeric'})}</div>
                                 </div>
@@ -202,19 +193,17 @@ function App() {
                             <div className="flex-1 flex flex-col">
                                 <span className="text-xs font-bold text-lks-blue block mb-1">Agenda Selanjutnya:</span>
                                 <div className="bg-lks-green text-white p-4 rounded-none font-bold border-0 shadow-none flex-1 flex items-start">
-                                    <p className="text-lg leading-snug font-extrabold">{db.schedule[0]?.title || "Sesi Pengumpulan Tugas"}</p>
+                                    <p className="text-lg leading-snug font-extrabold">{db.schedule.find(s => new Date(s.start) > currentTime)?.title || "Sesi Pengumpulan Tugas"}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 )}
 
-                {/* VIEW: 1. AKSES MODUL */}
+                {/* VIEW 1: AKSES MODUL */}
                 {view === 'modules' && (
                     <div className="bg-white rounded-none border-0 p-6 shadow-none max-h-full overflow-y-auto">
-                        <div className="flex justify-between items-center border-b pb-3 mb-4">
-                            <h3 className="text-xl font-extrabold text-lks-blue">Modul Kompetisi Rilis</h3>
-                        </div>
+                        <div className="border-b pb-3 mb-4"><h3 className="text-xl font-extrabold text-lks-blue">Modul Soal LKSN</h3></div>
                         <div className="space-y-3">
                             {db.modules.map((m) => {
                                 const isReleased = currentTime >= new Date(m.releaseTime);
@@ -222,10 +211,10 @@ function App() {
                                     <div key={m.id} className="p-4 bg-slate-50 border-0 rounded-none flex items-center justify-between">
                                         <div>
                                             <h4 className="font-bold text-slate-800">{m.title}</h4>
-                                            <p className="text-xs text-slate-400 mt-1">Jadwal Rilis: {new Date(m.releaseTime).toLocaleString('id-ID')}</p>
+                                            <p className="text-xs text-slate-400 mt-1">PIC: {m.pic} • Rilis: {new Date(m.releaseTime).toLocaleTimeString('id-ID')}</p>
                                         </div>
                                         {isReleased ? (
-                                            <a href={m.link} target="_blank" rel="noreferrer" className="bg-lks-blue text-white px-4 py-2 rounded-none text-xs font-bold">Download Soal</a>
+                                            <a href={m.link} target="_blank" rel="noreferrer" className="bg-lks-blue text-white px-4 py-2 rounded-none text-xs font-bold">Buka Drive Modul</a>
                                         ) : (
                                             <button disabled className="bg-slate-300 text-slate-500 px-4 py-2 rounded-none text-xs font-bold cursor-not-allowed">Terkunci</button>
                                         )}
@@ -236,11 +225,11 @@ function App() {
                     </div>
                 )}
 
-                {/* VIEW: 2. FOLDER PENGUMPULAN DENGAN SEARCH & SORT */}
+                {/* VIEW 2: FOLDER PENGUMPULAN (DENGAN SEARCH & SORT) */}
                 {view === 'peserta' && (
                     <div className="bg-white rounded-none border-0 p-6 shadow-none max-h-full flex flex-col h-full">
                         <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-3 border-b pb-3 mb-4 shrink-0">
-                            <h3 className="text-xl font-extrabold text-lks-blue">Daftar Folder Pengumpulan Tugas</h3>
+                            <h3 className="text-xl font-extrabold text-lks-blue">Folder Pengumpulan Tugas</h3>
                             <div className="flex items-center gap-2">
                                 <select value={sortBy} onChange={(e) => setSortBy(e.target.value)} className="text-xs font-bold px-3 py-2 border border-slate-200 bg-white rounded-none focus:outline-none">
                                     <option value="no-asc">No. Terkecil</option>
@@ -257,49 +246,62 @@ function App() {
                                         <span className="font-mono bg-lks-blue/10 text-lks-blue px-2 py-0.5 rounded-none font-bold mr-2">{p.no}</span>
                                         <span className="font-bold text-slate-700">{p.nama}</span>
                                     </div>
-                                    <a href={p.link} target="_blank" rel="noreferrer" className="bg-lks-blue text-white px-3 py-1.5 rounded-none text-xs font-bold">Buka Drive</a>
+                                    <a href={p.link} target="_blank" rel="noreferrer" className="bg-lks-blue text-white px-3 py-1.5 rounded-none text-xs font-bold">Buka Folder</a>
                                 </div>
                             ))}
                         </div>
                     </div>
                 )}
 
-                {/* VIEW: 3. JADWAL KOMPETISI */}
+                {/* VIEW 3: JADWAL KOMPETISI */}
                 {view === 'schedule' && (
                     <div className="bg-white rounded-none border-0 p-6 shadow-none max-h-full overflow-y-auto">
-                        <div className="border-b pb-3 mb-4"><h3 className="text-xl font-extrabold text-lks-blue">Garis Waktu & Timeline Lomba</h3></div>
-                        <div className="space-y-2">
-                            {db.schedule.map((s) => (
-                                <div key={s.id} className="p-4 bg-slate-50 border-0 rounded-none flex justify-between items-center text-sm">
-                                    <div>
-                                        <span className="font-bold text-lks-blue block">{s.title}</span>
-                                        <span className="text-xs text-slate-400 mt-1 block">Durasi: {s.duration} ({s.pic})</span>
+                        <div className="border-b pb-3 mb-4"><h3 className="text-xl font-extrabold text-lks-blue">Jadwal Kompetisi Terstruktur</h3></div>
+                        <div className="space-y-4">
+                            {Object.entries(
+                                db.schedule.reduce((acc, curr) => {
+                                    if (!acc[curr.dayLabel]) acc[curr.dayLabel] = [];
+                                    acc[curr.dayLabel].push(curr);
+                                    return acc;
+                                }, {})
+                            ).map(([dayGroup, items], idx) => (
+                                <div key={idx} className="border-l-4 border-lks-blue pl-4 py-1">
+                                    <h4 className="font-extrabold text-lks-pink text-sm mb-2 uppercase">{dayGroup}</h4>
+                                    <div className="space-y-1.5">
+                                        {items.map((s) => (
+                                            <div key={s.id} className="p-3 bg-slate-50 rounded-none flex justify-between items-center text-xs">
+                                                <div>
+                                                    <span className="font-bold text-slate-800 block">{s.title}</span>
+                                                    <span className="text-slate-400 block mt-0.5">Durasi: {s.duration} | PIC: {s.pic}</span>
+                                                </div>
+                                                <span className="font-mono font-bold text-lks-blue bg-white px-2 py-1 border border-slate-200">
+                                                    {new Date(s.start).toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'})} - {new Date(s.end).toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'})}
+                                                </span>
+                                            </div>
+                                        ))}
                                     </div>
-                                    <span className="font-mono font-bold text-slate-600 bg-slate-200/60 px-2 py-1 text-xs">
-                                        {new Date(s.start).toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'})} - {new Date(s.end).toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'})}
-                                    </span>
                                 </div>
                             ))}
                         </div>
                     </div>
                 )}
 
-                {/* VIEW: 4. LINK LINK PENTING */}
+                {/* VIEW 4: LINK LINK PENTING */}
                 {view === 'links' && (
                     <div className="bg-white rounded-none border-0 p-6 shadow-none max-h-full overflow-y-auto">
-                        <div className="border-b pb-3 mb-4"><h3 className="text-xl font-extrabold text-lks-blue">Kumpulan Link Penting Kompetisi</h3></div>
+                        <div className="border-b pb-3 mb-4"><h3 className="text-xl font-extrabold text-lks-blue">Link-Link Penting Kompetisi</h3></div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             {db.importantLinks?.map((l, idx) => (
                                 <a key={idx} href={l.url} target="_blank" rel="noreferrer" className="p-4 bg-slate-50 hover:bg-lks-blue/5 border-l-4 border-lks-blue rounded-none flex items-center justify-between group transition-colors">
                                     <span className="font-bold text-slate-700 group-hover:text-lks-blue">{l.label}</span>
-                                    <span className="text-xs text-lks-blue font-bold">Buka Link →</span>
+                                    <span className="text-xs text-lks-blue font-bold">Kunjungi Tautan →</span>
                                 </a>
                             ))}
                         </div>
                     </div>
                 )}
 
-                {/* VIEW: ADMIN CONFIGURATION */}
+                {/* VIEW RAHASIA: ADMIN CONFIGURATION */}
                 {view === 'admin' && (
                     <div className="bg-white rounded-none border border-lks-pink p-6 max-w-xl mx-auto shadow-none">
                         <div className="flex justify-between items-center border-b pb-2 mb-4">
@@ -314,40 +316,25 @@ function App() {
                 )}
             </main>
 
-            {/* --- BARIS 5: FOOTER NAVIGATION WITH NARROW MARGIN & SINGLE BENTO GAP (WARNA BIRU) --- */}
-            <footer className="h-[20vh] relative w-full border-t-4 border-lks-blue shrink-0">
+            {/* --- BARIS 5: FOOTER NAVIGATION (1/6 SCREEN TINGGI H-[16.6VH]) --- */}
+            {/* BUTTON PUTIH, TEKS BIRU LKSN, DIMENSI DIPERKECIL 10% (H-[76.5%], W-[22.5%]) */}
+            <footer className="h-[16.6vh] relative w-full border-t-4 border-lks-blue shrink-0">
                 <BackgroundPattern className="absolute inset-0 w-full h-full object-cover rotate-180" />
                 <div className="absolute inset-0 flex items-center justify-center gap-1 px-16 z-10 w-full h-full py-2">
                     
-                    {/* BUTTON 1: AKSES MODUL */}
-                    <button 
-                        onClick={() => setView('modules')} 
-                        className={`text-white border-0 font-semibold rounded-none shadow-none h-[85%] w-1/4 flex items-center justify-center text-[24pt] transition-all cursor-pointer ${view === 'modules' ? 'bg-sky-700' : 'bg-lks-blue hover:bg-sky-600'}`}
-                    >
+                    <button onClick={() => setView('modules')} className={`bg-white border-0 text-lks-blue font-semibold rounded-none shadow-none h-[76.5%] w-[22.5%] flex items-center justify-center text-[24pt] transition-all cursor-pointer ${view === 'modules' ? 'bg-slate-100 ring-2 ring-lks-blue' : 'hover:bg-slate-50'}`}>
                         Akses Modul
                     </button>
 
-                    {/* BUTTON 2: FOLDER PENGUMPULAN */}
-                    <button 
-                        onClick={() => setView('peserta')} 
-                        className={`text-white border-0 font-semibold rounded-none shadow-none h-[85%] w-1/4 flex items-center justify-center text-[24pt] transition-all cursor-pointer ${view === 'peserta' ? 'bg-sky-700' : 'bg-lks-blue hover:bg-sky-600'}`}
-                    >
+                    <button onClick={() => setView('peserta')} className={`bg-white border-0 text-lks-blue font-semibold rounded-none shadow-none h-[76.5%] w-[22.5%] flex items-center justify-center text-[24pt] transition-all cursor-pointer ${view === 'peserta' ? 'bg-slate-100 ring-2 ring-lks-blue' : 'hover:bg-slate-50'}`}>
                         Folder Pengumpulan
                     </button>
 
-                    {/* BUTTON 3: JADWAL KOMPETISI */}
-                    <button 
-                        onClick={() => setView('schedule')} 
-                        className={`text-white border-0 font-semibold rounded-none shadow-none h-[85%] w-1/4 flex items-center justify-center text-[24pt] transition-all cursor-pointer ${view === 'schedule' ? 'bg-sky-700' : 'bg-lks-blue hover:bg-sky-600'}`}
-                    >
+                    <button onClick={() => setView('schedule')} className={`bg-white border-0 text-lks-blue font-semibold rounded-none shadow-none h-[76.5%] w-[22.5%] flex items-center justify-center text-[24pt] transition-all cursor-pointer ${view === 'schedule' ? 'bg-slate-100 ring-2 ring-lks-blue' : 'hover:bg-slate-50'}`}>
                         Jadwal Kompetisi
                     </button>
 
-                    {/* BUTTON 4: LINK LINK PENTING */}
-                    <button 
-                        onClick={() => setView('links')} 
-                        className={`text-white border-0 font-semibold rounded-none shadow-none h-[85%] w-1/4 flex items-center justify-center text-[24pt] transition-all cursor-pointer ${view === 'links' ? 'bg-sky-700' : 'bg-lks-blue hover:bg-sky-600'}`}
-                    >
+                    <button onClick={() => setView('links')} className={`bg-white border-0 text-lks-blue font-semibold rounded-none shadow-none h-[76.5%] w-[22.5%] flex items-center justify-center text-[24pt] transition-all cursor-pointer ${view === 'links' ? 'bg-slate-100 ring-2 ring-lks-blue' : 'hover:bg-slate-50'}`}>
                         Link Link Penting
                     </button>
 
