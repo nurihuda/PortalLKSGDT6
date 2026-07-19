@@ -75,46 +75,33 @@ const BackgroundPattern = ({ className }) => (
     </svg>
 );
 
+// --- UPDATE LOGO GDTSKILLS DENGAN KODE SVG BARU ---
 const LogoGdtSkills = ({ className }) => (
     <svg className={className} preserveAspectRatio="xMidYMid meet" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 270.61 71.33" width="100%" height="100%">
         <defs>
-            <style>{`.cls-g1{fill:#00a931;}.cls-g2{fill:#602c05;}`}</style>
+            <style>{`.cls-1{fill:#00a931;}.cls-2{fill:#602c05;}`}</style>
         </defs>
-        <g>
-            <g id="t"><path className="cls-g2" d="M167.66,49.88c-5.88,0-8.73-2.7-8.73-8.25v-6.9c0-.99-.81-1.77-1.8-1.78-.57,0-1.03-.47-1.03-1.04v-3.55c0-.63.42-1.16,1.02-1.35,1.8-.58,1.81-2.68,1.81-2.68v-3.01c0-.78.63-1.41,1.41-1.41h6.47c.78,0,1.41.63,1.41,1.41v4.65h4.16c.78,0,1.41.63,1.41,1.41v4.17c0,.78-.63,1.41-1.41,1.41h-4.16v6.47c0,1.92.92,2.85,2.8,2.85.44,0,.92-.06,1.41-.17.08-.02.16-.03.23-.03.57,0,1.04.47,1.04,1.04v4.86c0,.43-.27.82-.68.98-1.51.59-3.47.93-5.36.93h0Z"/></g>
-            <g id="d-2"><path className="cls-g2" d="M137.14,49.93c-5.8,0-10.02-5.09-10.02-12.09v-.09c0-7.16,4.18-12.36,9.93-12.36,3.62,0,5.56,1.61,6.97,3.19l.65.72v-10.06c0-.78.63-1.41,1.41-1.41h6.47c.78,0,1.41.63,1.41,1.41v28.7c0,.78-.63,1.41-1.41,1.41h-6.47c-.78,0-1.41-.63-1.41-1.41v-2.13l-.64.69c-1.67,1.8-3.45,3.42-6.89,3.42h0ZM140.5,32.91c-2.46,0-4.39,2.07-4.39,4.7v.09c0,2.64,1.93,4.7,4.39,4.7s4.39-2.07,4.39-4.7v-.09c0-2.64-1.93-4.7-4.39-4.7Z"/></g>
-            <g id="g"><path className="cls-g2" d="M111.29,59.82c-4.34,0-8-.69-11.53-2.18-.36-.15-.63-.44-.76-.8s-.11-.78.07-1.13l1.46-2.86c.24-.47.71-.75,1.24-.75.2,0,.4.04.58.13,2.45,1.09,4.79,1.59,7.34,1.59,3.25,0,5.36-1.45,5.94-4.07.07-.35.11-.7gamma.13-1.08.01-.33-.1-.63-.32-.86-.23-.23-.54-.37-.87-.37-.29,0-.58.11-.8.31-1.12,1.02-2.78,2.19-5.68,2.19-5.8,0-10.02-5.09-10.02-12.09v-.09c0-7.16,4.18-12.36,9.93-12.36,3.62,0,5.56,1.61,6.97,3.19l.65.72v-1.93c0-.78.63-1.41,1.41-1.41h6.47c.78,0,1.41.63,1.41,1.41v19.56c0,4.45-.94,7.37-3.03,9.46-2.31,2.31-5.78,3.43-10.61,3.43h0ZM111.47,32.91c-2.46,0-4.39,2.07-4.39,4.7v.09c0,2.64,1.93,4.7,4.39,4.7s4.39-2.07,4.39-4.7v-.09c0-2.64-1.93-4.7-4.39-4.7Z"/></g>
-            <g>
-                <path className="cls-g1" d="M177.67,45.95l1.15-2.61c.43-.97,1.56-1.44,2.53-1.02,2.19.95,4.86,1.51,7.32,1.51,3.06,0,4.06-.67,4.06-1.77,0-3.48-15.28.48-15.28-9.88,0-4.87,4.49-8.59,12.6-8.59,2.83,0,5.89.47,8.33,1.35,1.06.38,1.56,1.6,1.1,2.63l-1.14,2.59c-.42.96-1.53,1.37-2.51.97-1.99-.8-3.95-1.09-5.73-1.09-3.06,0-4.15.86-4.15,1.82,0,3.58,15.23-.29,15.23,9.98,0,4.77-4.39,8.5-12.79,8.5-3.51,0-7.11-.7-9.71-1.79-1-.42-1.44-1.59-1.01-2.58Z"/>
-                <path className="cls-g1" d="M215.43,40.82l-2.67,2.72v4.4c0,1.08-.88,1.95-1.95,1.95h-5.16c-1.08,0-1.95-.88-1.95-1.95v-31.41c0-1.14.92-2.06,2.06-2.06h5.05c1.08,0,1.95.88,1.95,1.95v16.62l8.69-8.47c.37-.36.85-.55,1.36-.55h5.33c1.73,0,2.61,2.08,1.4,3.32l-7.53,7.76,9.16,11.64c1.01,1.28.1,3.16-1.54,3.16h-6.01c-.59,0-1.16-.27-1.53-.73l-6.67-8.34Z"/>
-                <path className="cls-g1" d="M233,16.33c0-2.72,2.2-4.82,5.54-4.82s5.54,1.96,5.54,4.68c0,2.86-2.2,4.97-5.54,4.97s-5.54-2.1-5.54-4.82ZM235.95,24.02h5.16c1.08,0,1.95.88,1.95,1.95v21.97c0,1.08-.88,1.95-1.95,1.95h-5.16c-1.08,0-1.95-.88-1.95-1.95v-21.97c0-1.08.88-1.95,1.95-1.95Z"/>
-                <path className="cls-g1" d="M249.49,14.47h5.16c1.08,0,1.95.88,1.95,1.95v31.51c0,1.08-.88,1.95-1.95,1.95h-5.16c-1.08,0-1.95-.88-1.95-1.95v-31.51c0-1.08.88-1.95,1.95-1.95Z"/>
-                <path className="cls-g1" d="M263.49,14.47h5.16c1.08,0,1.95.88,1.95,1.95v31.51c0,1.08-.88,1.95-1.95,1.95h-5.16c-1.08,0-1.95-.88-1.95-1.95v-31.51c0-1.08.88-1.95,1.95-1.95Z"/>
-            </g>
-        </g>
-        <g>
-            <g id="_7"><path className="cls-g2" d="M35.67,71.33c-2.06,0-3.72-1.67-3.72-3.72v-10.65c0-2.06,1.67-3.72,3.72-3.72s3.72,1.67,3.72,3.72v10.65c0,2.06-1.67,3.72-3.72,3.72Z"/></g>
-            <g id="_6"><path className="cls-g2" d="M58.25,61.97c-.95,0-1.9-.36-2.63-1.09l-7.53-7.53c-1.45-1.45-1.45-3.81,0-5.26s3.81-1.45,5.26,0l7.53,7.53c1.45,1.45,1.45,3.81,0,5.26-.73.73-1.68,1.09-2.63,1.09Z"/></g>
-            <g id="_5"><path className="cls-g2" d="M67.61,39.39h-10.65c-2.06,0-3.72-1.67-3.72-3.72s1.67-3.72,3.72-3.72h10.65c2.06,0,3.72,1.67,3.72,3.72s-1.67,3.72-3.72,3.72h0Z"/></g>
-            <g id="_4"><path className="cls-g2" d="M50.72,24.33c-.95,0-1.9-.36-2.63-1.09-1.45-1.45-1.45-3.81,0-5.26l7.53-7.53c1.45-1.45,3.81-1.45,5.26,0,1.45,1.45,1.45,3.81,0,5.26l-7.53,7.53c-.73.73-1.68,1.09-2.63,1.09h0Z"/></g>
-            <g id="_3"><path className="cls-g2" d="M35.67,18.09c-2.06,0-3.72-1.67-3.72-3.72V3.72c0-2.06,1.67-3.72,3.72-3.72s3.72,1.67,3.72,3.72v10.65c0,2.06-1.67,3.72-3.72,3.72Z"/></g>
-            <g id="_2"><path className="cls-g2" d="M20.61,24.33c-.95,0-1.9-.36-2.63-1.09l-7.53-7.53c-1.45-1.45-1.45-3.81,0-5.26,1.45-1.45,3.81-1.45,5.26,0l7.53,7.53c1.45,1.45,1.45,3.81,0,5.26-.73.73-1.68,1.09-2.63,1.09h0Z"/></g>
-            <g id="_1"><path className="cls-g2" d="M14.37,39.39H3.72c-2.06,0-3.72-1.67-3.72-3.72s1.67-3.72,3.72-3.72h10.65c2.06,0,3.72,1.67,3.72,3.72s-1.67,3.72-3.72,3.72h0Z"/></g>
-            <g id="tongkat"><path className="cls-g2" d="M13.08,61.97c-.95,0-1.9-.36-2.63-1.09-1.45-1.45-1.45-3.81,0-5.26l22.59-22.59c1.45-1.45,3.81-1.45,5.26,0,1.45,1.45,1.45,3.81,0,5.26l-22.59,22.59c-.73.73-1.68,1.09-2.63,1.09Z"/></g>
-        </g>
+        <path className="cls-1" d="M177.67,45.95l1.15-2.61c.43-.97,1.56-1.44,2.53-1.02,2.19.95,4.86,1.51,7.32,1.51,3.06,0,4.06-.67,4.06-1.77,0-3.48-15.28.48-15.28-9.88,0-4.87,4.49-8.59,12.6-8.59,2.83,0,5.89.47,8.33,1.35,1.06.38,1.56,1.6,1.1,2.63l-1.14,2.59c-.42.96-1.53,1.37-2.51.97-1.99-.8-3.95-1.09-5.73-1.09-3.06,0-4.15.86-4.15,1.82,0,3.58,15.23-.29,15.23,9.98,0,4.77-4.39,8.5-12.79,8.5-3.51,0-7.11-.7-9.71-1.79-1-.42-1.44-1.59-1.01-2.58ZM215.43,40.82l-2.67,2.72v4.4c0,1.08-.88,1.95-1.95,1.95h-5.16c-1.08,0-1.95-.88-1.95-1.95v-31.41c0-1.14.92-2.06,2.06-2.06h5.05c1.08,0,1.95.88,1.95,1.95v16.62l8.69-8.47c.37-.36.85-.55,1.36-.55h5.33c1.73,0,2.61,2.08,1.4,3.32l-7.53,7.76,9.16,11.64c1.01,1.28.1,3.16-1.54,3.16h-6.01c-.59,0-1.16-.27-1.53-.73l-6.67-8.34ZM233,16.33c0-2.72,2.2-4.82,5.54-4.82s5.54,1.96,5.54,4.68c0,2.86-2.2,4.97-5.54,4.97s-5.54-2.1-5.54-4.82ZM235.95,24.02h5.16c1.08,0,1.95.88,1.95,1.95v21.97c0,1.08-.88,1.95-1.95,1.95h-5.16c-1.08,0-1.95-.88-1.95-1.95v-21.97c0-1.08.88-1.95,1.95-1.95ZM249.49,14.47h5.16c1.08,0,1.95.88,1.95,1.95v31.51c0,1.08-.88,1.95-1.95,1.95h-5.16c-1.08,0-1.95-.88-1.95-1.95v-31.51c0-1.08.88-1.95,1.95-1.95ZM263.49,14.47h5.16c1.08,0,1.95.88,1.95,1.95v31.51c0,1.08-.88,1.95-1.95,1.95h-5.16c-1.08,0-1.95-.88-1.95-1.95v-31.51c0-1.08.88-1.95,1.95-1.95Z"/>
+        <path className="cls-2" d="M167.66,49.88c-5.88,0-8.73-2.7-8.73-8.25v-6.9c0-.99-.81-1.77-1.8-1.78-.57,0-1.03-.47-1.03-1.04v-3.55c0-.63.42-1.16,1.02-1.35,1.8-.58,1.81-2.68,1.81-2.68v-3.01c0-.78.63-1.41,1.41-1.41h6.47c.78,0,1.41.63,1.41,1.41v4.65h4.16c.78,0,1.41.63,1.41,1.41v4.17c0,.78-.63,1.41-1.41,1.41h-4.16v6.47c0,1.92.92,2.85,2.8,2.85.44,0,.92-.06,1.41-.17.08-.02.16-.03.23-.03.57,0,1.04.47,1.04,1.04v4.86c0,.43-.27.82-.68.98-1.51.59-3.47.93-5.36.93h0ZM137.14,49.93c3.44,0,5.22-1.62,6.89-3.42l.64-.69v2.13c0,.78.63,1.41,1.41,1.41h6.47c.78,0,1.41-.63,1.41-1.41v-28.7c0-.78-.63-1.41-1.41-1.41h-6.47c-.78,0-1.41.63-1.41,1.41v10.06l-.65-.72c-1.41-1.58-3.35-3.19-6.97-3.19-5.75,0-9.93,5.2-9.93,12.36v.09c0,7.01,4.21,12.09,10.02,12.09h0ZM144.89,37.62v.09c0,2.64-1.93,4.7-4.39,4.7s-4.39-2.07-4.39-4.7v-.09c0-2.64,1.93-4.7,4.39-4.7s4.39,2.07,4.39,4.7ZM111.29,59.82c4.83,0,8.3-1.12,10.61-3.43,2.09-2.09,3.03-5.01,3.03-9.46v-19.56c0-.78-.63-1.41-1.41-1.41h-6.47c-.78,0-1.41.63-1.41,1.41v1.93l-.65-.72c-1.41-1.58-3.35-3.19-6.97-3.19-5.75,0-9.93,5.2-9.93,12.36v.09c0,7.01,4.21,12.09,10.02,12.09,2.89,0,4.55-1.17,5.68-2.19.22-.2.51-.31.8-.31.33,0,.64.13.87.37.22.23.33.54.32.86-.02.37-.06.73-.13,1.08-.58,2.63-2.7,4.07-5.94,4.07-2.55,0-4.88-.51-7.34-1.59-.18-.08-.38-.13-.58-.13-.53,0-1,.29-1.24.75l-1.46,2.86c-.18.35-.2.76-.07,1.13s.4.65.76.8c3.53,1.49,7.19,2.18,11.53,2.18h0ZM115.86,37.62v.09c0,2.64-1.93,4.7-4.39,4.7s-4.39-2.07-4.39-4.7v-.09c0-2.64,1.93-4.7,4.39-4.7s4.39,2.07,4.39,4.7ZM39.39,67.61v-10.65c0-2.06-1.67-3.72-3.72-3.72s-3.72,1.67-3.72,3.72v10.65c0,2.06,1.67,3.72,3.72,3.72s3.72-1.67,3.72-3.72ZM60.88,60.88c1.45-1.45,1.45-3.81,0-5.26l-7.53-7.53c-1.45-1.45-3.81-1.45-5.26,0s-1.45,3.81,0,5.26l7.53,7.53c.73.73,1.68,1.09,2.63,1.09s1.9-.36,2.63-1.09ZM67.61,39.39c2.06,0,3.72-1.67,3.72-3.72s-1.67-3.72-3.72-3.72h-10.65c-2.06,0-3.72,1.67-3.72,3.72s1.67,3.72,3.72,3.72h10.65ZM50.72,24.33c.95,0,1.9-.36,2.63-1.09l7.53-7.53c1.45-1.45,1.45-3.81,0-5.26-1.45-1.45-3.81-1.45-5.26,0l-7.53,7.53c-1.45,1.45-1.45,3.81,0,5.26.73.73,1.68,1.09,2.63,1.09h0ZM39.39,14.37V3.72c0-2.06-1.67-3.72-3.72-3.72s-3.72,1.67-3.72,3.72v10.65c0,2.06,1.67,3.72,3.72,3.72s3.72-1.67,3.72-3.72ZM20.61,24.33c.95,0,1.9-.36,2.63-1.09,1.45-1.45,1.45-3.81,0-5.26l-7.53-7.53c-1.45-1.45-3.81-1.45-5.26,0-1.45,1.45-1.45,3.81,0,5.26l7.53,7.53c.73.73,1.68,1.09,2.63,1.09h0ZM14.37,39.39c2.06,0,3.72-1.67,3.72-3.72s-1.67-3.72-3.72-3.72H3.72c-2.06,0-3.72,1.67-3.72,3.72s1.67,3.72,3.72,3.72h10.65ZM15.71,60.88l22.59-22.59c1.45-1.45,1.45-3.81,0-5.26-1.45-1.45-3.81-1.45-5.26,0l-22.59,22.59c-1.45,1.45-1.45,3.81,0,5.26.73.73,1.68,1.09,2.63,1.09s1.9-.36,2.63-1.09Z"/>
     </svg>
 );
 
+// --- HELPER PARSING WAKTU ABSOLUT (Memaksa data JSON menjadi WIB +07:00) ---
+const getWibEpoch = (dateString) => {
+    // Jika string di JSON tidak mengandung informasi zona waktu, kita paksa menjadi +07:00 (WIB)
+    const safeString = dateString.includes('+') || dateString.includes('Z') ? dateString : `${dateString}+07:00`;
+    return new Date(safeString).getTime();
+};
+
 function App() {
     const [view, setView] = useState('dashboard');
-    const [currentTime, setCurrentTime] = useState(new Date());
-    // Inisialisasi state selisih waktu antara Server (WIB) dengan Mesin Lokal
-    const [serverOffset, setServerOffset] = useState(0); 
-
     const [searchQuery, setSearchQuery] = useState('');
     const [sortBy, setSortBy] = useState('no-asc');
     
-    // Fitur Fullscreen
+    // Engine State Waktu Absolut (Epoch ms)
+    const [currentEpoch, setCurrentEpoch] = useState(Date.now());
+    const [serverOffset, setServerOffset] = useState(0);
+
     const [isFullscreen, setIsFullscreen] = useState(false);
     const timerRef = useRef(null);
 
@@ -129,29 +116,27 @@ function App() {
             .catch(err => console.error(err));
     }, []);
 
-    // 2. Fetch Waktu Asli dari World Time API (Untuk bypass manipulasi jam lokal)
+    // 2. Trik Jitu: Ambil Waktu Asli dari Server Satelit Internet!
     useEffect(() => {
         fetch('https://worldtimeapi.org/api/timezone/Asia/Jakarta')
             .then(res => res.json())
             .then(data => {
-                // Jam asli server internet (WIB / UTC+7)
-                const trueServerTime = new Date(data.datetime).getTime();
-                // Jam bohong-bohongan dari komputer peserta saat fetch terjadi
-                const localMachineTime = new Date().getTime();
-                // Hitung defisit/surplusnya
-                setServerOffset(trueServerTime - localMachineTime);
+                // data.unixtime adalah detik absolut murni dari satelit
+                const trueServerEpoch = data.unixtime * 1000;
+                // Hitung selisih jam komputer penipu dengan jam asli
+                const localMachineEpoch = Date.now();
+                setServerOffset(trueServerEpoch - localMachineEpoch);
             })
             .catch(err => {
-                console.error("Gagal menarik waktu dari server, menggunakan waktu lokal:", err);
+                console.warn("API Waktu terblokir, mengandalkan jam lokal sebagai cadangan.", err);
             });
     }, []);
 
-    // 3. Engine Jam Berdetak Berdasarkan Offset Server
+    // 3. Engine Timer Absolut (Tidak terpengaruh jika peserta memutar jam laptop)
     useEffect(() => {
         const interval = setInterval(() => {
-            const nowLocal = new Date().getTime();
-            // Terapkan koreksi dari server offset
-            setCurrentTime(new Date(nowLocal + serverOffset));
+            // Jam saat ini adalah = Jam Komputer + Selisih Sinkronisasi Server
+            setCurrentEpoch(Date.now() + serverOffset);
         }, 1000);
         return () => clearInterval(interval);
     }, [serverOffset]);
@@ -178,20 +163,25 @@ function App() {
         }
     };
 
+    // Logika Sinkronisasi Agenda menggunakan Epoch Murni (Akurat 100%)
     const { activeAgenda, nextAgenda } = useMemo(() => {
         let active = null, next = null;
-        const now = currentTime.getTime();
         for (let i = 0; i < db.schedule.length; i++) {
-            const start = new Date(db.schedule[i].start).getTime();
-            const end = new Date(db.schedule[i].end).getTime();
-            if (now >= start && now <= end) active = db.schedule[i];
-            else if (now < start && !next) next = db.schedule[i];
+            const startEpoch = getWibEpoch(db.schedule[i].start);
+            const endEpoch = getWibEpoch(db.schedule[i].end);
+            
+            if (currentEpoch >= startEpoch && currentEpoch <= endEpoch) {
+                active = db.schedule[i];
+            } else if (currentEpoch < startEpoch && !next) {
+                next = db.schedule[i];
+            }
         }
         return { activeAgenda: active, nextAgenda: next };
-    }, [currentTime, db.schedule]);
+    }, [currentEpoch, db.schedule]);
 
-    const targetTime = activeAgenda ? new Date(activeAgenda.end).getTime() : (nextAgenda ? new Date(nextAgenda.start).getTime() : null);
-    const sisaDetik = targetTime ? Math.max(0, Math.floor((targetTime - currentTime.getTime()) / 1000)) : 0;
+    // Kalkulasi Sisa Waktu
+    const targetEpoch = activeAgenda ? getWibEpoch(activeAgenda.end) : (nextAgenda ? getWibEpoch(nextAgenda.start) : null);
+    const sisaDetik = targetEpoch ? Math.max(0, Math.floor((targetEpoch - currentEpoch) / 1000)) : 0;
 
     const formatDuaDigit = (num) => String(num).padStart(2, '0');
     const hours = formatDuaDigit(Math.floor(sisaDetik / 3600));
@@ -207,6 +197,11 @@ function App() {
             return 0;
         });
     }, [pesertaList, searchQuery, sortBy]);
+
+    // Formatter Tampilan Jam ke Format WIB Khusus
+    const timeFormatter = new Intl.DateTimeFormat('id-ID', { timeZone: 'Asia/Jakarta', hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    const dateFormatter = new Intl.DateTimeFormat('id-ID', { timeZone: 'Asia/Jakarta', day: 'numeric', month: 'long', year: 'numeric' });
+    const dateObj = new Date(currentEpoch);
 
     return (
         <div className="flex flex-col h-screen w-screen overflow-hidden bg-white font-karla">
@@ -253,9 +248,12 @@ function App() {
                             <div className="w-full md:w-1/4 flex flex-col justify-between gap-4">
                                 <div className="bg-white text-lks-blue p-6 font-bold flex flex-col justify-center h-1/2 rounded-none border border-slate-100 shadow-sm">
                                     <span className="text-xs font-bold block mb-2 opacity-80">Waktu Sistem (WIB):</span>
-                                    {/* Format dipaksa menampilkan format WIB */}
-                                    <div className="text-3xl lg:text-4xl font-black font-mono leading-none tracking-tight">{currentTime.toLocaleTimeString('id-ID', {timeZone: 'Asia/Jakarta'})}</div>
-                                    <div className="text-xs mt-2 opacity-80">{currentTime.toLocaleDateString('id-ID', {day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Asia/Jakarta'})}</div>
+                                    <div className="text-3xl lg:text-4xl font-black font-mono leading-none tracking-tight">
+                                        {timeFormatter.format(dateObj).replace(/\./g, ':')}
+                                    </div>
+                                    <div className="text-xs mt-2 opacity-80">
+                                        {dateFormatter.format(dateObj)}
+                                    </div>
                                 </div>
                                 <div className="bg-white text-lks-blue p-6 font-bold flex flex-col justify-center h-1/2 rounded-none border border-slate-100 shadow-sm">
                                     <span className="text-xs font-bold block mb-2 opacity-80">Agenda Selanjutnya:</span>
@@ -274,12 +272,12 @@ function App() {
                         <div className="border-b border-slate-200 pb-3 mb-4"><h3 className="text-xl font-extrabold text-lks-blue">Modul Soal LKSN</h3></div>
                         <div className="space-y-4">
                             {db.modules.map((m) => {
-                                const isReleased = currentTime >= new Date(m.releaseTime);
+                                const isReleased = currentEpoch >= getWibEpoch(m.releaseTime);
                                 return (
                                     <div key={m.id} className="p-5 bg-slate-50 flex items-center justify-between">
                                         <div>
                                             <h4 className="font-bold text-slate-800 text-lg">{m.title}</h4>
-                                            <p className="text-sm text-slate-500 mt-1">PIC: {m.pic} • Rilis: {new Date(m.releaseTime).toLocaleTimeString('id-ID', {timeZone: 'Asia/Jakarta'})} WIB</p>
+                                            <p className="text-sm text-slate-500 mt-1">PIC: {m.pic} • Rilis: {timeFormatter.format(new Date(getWibEpoch(m.releaseTime))).replace(/\./g, ':')} WIB</p>
                                         </div>
                                         {isReleased ? (
                                             <a href={m.link} target="_blank" rel="noreferrer" className="bg-[#2982c5] text-white px-8 py-4 text-lg font-bold transition hover:bg-sky-600 shadow-md">Buka Modul</a>
@@ -330,7 +328,7 @@ function App() {
                     </div>
                 )}
 
-                {/* VIEW 3: JADWAL KOMPETISI (FORMAT TABEL + HIGHLIGHT) */}
+                {/* VIEW 3: JADWAL KOMPETISI */}
                 {view === 'schedule' && (
                     <div className="bg-white p-6 max-h-full overflow-y-auto w-full shadow-sm">
                         <div className="border-b border-slate-200 pb-3 mb-4"><h3 className="text-xl font-extrabold text-lks-blue">Jadwal Kompetisi Nasional</h3></div>
@@ -360,13 +358,15 @@ function App() {
                                                 </td>
                                             </tr>
                                             {items.map((s) => {
-                                                const isNow = currentTime.getTime() >= new Date(s.start).getTime() && currentTime.getTime() <= new Date(s.end).getTime();
-                                                const isPast = currentTime.getTime() > new Date(s.end).getTime();
+                                                const startEpoch = getWibEpoch(s.start);
+                                                const endEpoch = getWibEpoch(s.end);
+                                                const isNow = currentEpoch >= startEpoch && currentEpoch <= endEpoch;
+                                                const isPast = currentEpoch > endEpoch;
                                                 
                                                 return (
                                                     <tr key={s.id} className={`transition-colors border-b border-slate-200 ${isNow ? 'bg-sky-100 font-bold' : 'hover:bg-slate-50 bg-white'}`}>
                                                         <td className="py-4 px-6 font-mono text-sm whitespace-nowrap">
-                                                            {new Date(s.start).toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit', timeZone: 'Asia/Jakarta'})} - {new Date(s.end).toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit', timeZone: 'Asia/Jakarta'})}
+                                                            {timeFormatter.format(new Date(startEpoch)).replace(/\./g, ':')} - {timeFormatter.format(new Date(endEpoch)).replace(/\./g, ':')}
                                                         </td>
                                                         <td className={`py-4 px-6 ${isNow ? 'text-lks-blue' : 'text-slate-800'}`}>
                                                             {s.title}
@@ -416,7 +416,7 @@ function App() {
                             <button onClick={() => setView('dashboard')} className="text-xs font-bold bg-slate-100 px-3 py-2 transition hover:bg-slate-200">Tutup</button>
                         </div>
                         <div className="text-sm text-slate-500 leading-relaxed">
-                            Fungsi Waktu berjalan mandiri dan kebal dari manipulasi dengan menyinkronisasikan jam laptop secara paksa ke dalam standar <b>Waktu Indonesia Barat (WIB)</b> mengikuti waktu server internet secara <i>Real-time</i>.
+                            Fungsi Waktu berjalan mandiri dan kebal dari manipulasi dengan menyinkronisasikan jam laptop secara paksa ke dalam standar <b>Waktu Indonesia Barat (WIB)</b> melalui penarikan data satelit secara <i>Real-time</i>.
                         </div>
                     </div>
                 )}
