@@ -75,7 +75,6 @@ const BackgroundPattern = ({ className }) => (
     </svg>
 );
 
-// --- UPDATE LOGO GDTSKILLS (FIX VIEWBOX & PRESERVE ASPECT RATIO) ---
 const LogoGdtSkills = ({ className }) => (
     <svg className={className} preserveAspectRatio="xMidYMid meet" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 270.61 71.33" width="100%" height="100%">
         <defs>
@@ -106,18 +105,12 @@ const LogoGdtSkills = ({ className }) => (
     </svg>
 );
 
-// --- HELPER WIB ABSOLUT (Memaksa perhitungan timezone ke UTC+7) ---
-const getWIBTime = () => {
-    const d = new Date();
-    // Tarik waktu saat ini dalam format UTC
-    const utc = d.getTime() + (d.getTimezoneOffset() * 60000);
-    // Tambahkan 7 Jam (3600000 ms * 7) untuk memaksa ke WIB
-    return new Date(utc + (3600000 * 7));
-};
-
 function App() {
     const [view, setView] = useState('dashboard');
-    const [currentTime, setCurrentTime] = useState(getWIBTime());
+    const [currentTime, setCurrentTime] = useState(new Date());
+    // Inisialisasi state selisih waktu antara Server (WIB) dengan Mesin Lokal
+    const [serverOffset, setServerOffset] = useState(0); 
+
     const [searchQuery, setSearchQuery] = useState('');
     const [sortBy, setSortBy] = useState('no-asc');
     
@@ -128,13 +121,40 @@ function App() {
     const [db, setDb] = useState({ config: {}, modules: [], schedule: [], importantLinks: [] });
     const [pesertaList] = useState(window.DATA_PESERTA || []);
 
-    // Fetch JSON statis
+    // 1. Fetch JSON Konfigurasi
     useEffect(() => {
         fetch('data.json')
             .then(res => res.json())
             .then(data => setDb(data))
             .catch(err => console.error(err));
     }, []);
+
+    // 2. Fetch Waktu Asli dari World Time API (Untuk bypass manipulasi jam lokal)
+    useEffect(() => {
+        fetch('https://worldtimeapi.org/api/timezone/Asia/Jakarta')
+            .then(res => res.json())
+            .then(data => {
+                // Jam asli server internet (WIB / UTC+7)
+                const trueServerTime = new Date(data.datetime).getTime();
+                // Jam bohong-bohongan dari komputer peserta saat fetch terjadi
+                const localMachineTime = new Date().getTime();
+                // Hitung defisit/surplusnya
+                setServerOffset(trueServerTime - localMachineTime);
+            })
+            .catch(err => {
+                console.error("Gagal menarik waktu dari server, menggunakan waktu lokal:", err);
+            });
+    }, []);
+
+    // 3. Engine Jam Berdetak Berdasarkan Offset Server
+    useEffect(() => {
+        const interval = setInterval(() => {
+            const nowLocal = new Date().getTime();
+            // Terapkan koreksi dari server offset
+            setCurrentTime(new Date(nowLocal + serverOffset));
+        }, 1000);
+        return () => clearInterval(interval);
+    }, [serverOffset]);
 
     // Listener Full Screen API
     useEffect(() => {
@@ -143,13 +163,6 @@ function App() {
         return () => document.removeEventListener('fullscreenchange', handleFullscreen);
     }, []);
 
-    // Engine Jam WIB Real-Time
-    useEffect(() => {
-        const interval = setInterval(() => setCurrentTime(getWIBTime()), 1000);
-        return () => clearInterval(interval);
-    }, []);
-
-    // Panel Admin
     useEffect(() => {
         if (searchQuery.toLowerCase() === 'admin123') {
             setView('admin');
@@ -240,7 +253,7 @@ function App() {
                             <div className="w-full md:w-1/4 flex flex-col justify-between gap-4">
                                 <div className="bg-white text-lks-blue p-6 font-bold flex flex-col justify-center h-1/2 rounded-none border border-slate-100 shadow-sm">
                                     <span className="text-xs font-bold block mb-2 opacity-80">Waktu Sistem (WIB):</span>
-                                    {/* Parameter 'id-ID' di toLocaleTimeString akan mengadaptasi Waktu WIB kita */}
+                                    {/* Format dipaksa menampilkan format WIB */}
                                     <div className="text-3xl lg:text-4xl font-black font-mono leading-none tracking-tight">{currentTime.toLocaleTimeString('id-ID', {timeZone: 'Asia/Jakarta'})}</div>
                                     <div className="text-xs mt-2 opacity-80">{currentTime.toLocaleDateString('id-ID', {day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Asia/Jakarta'})}</div>
                                 </div>
@@ -403,7 +416,7 @@ function App() {
                             <button onClick={() => setView('dashboard')} className="text-xs font-bold bg-slate-100 px-3 py-2 transition hover:bg-slate-200">Tutup</button>
                         </div>
                         <div className="text-sm text-slate-500 leading-relaxed">
-                            Fungsi Waktu berjalan mandiri dan kebal dari manipulasi dengan menyinkronisasikan jam laptop secara paksa ke dalam standar <b>Waktu Indonesia Barat (WIB)</b> mengikuti jadwal <code>data.json</code>.
+                            Fungsi Waktu berjalan mandiri dan kebal dari manipulasi dengan menyinkronisasikan jam laptop secara paksa ke dalam standar <b>Waktu Indonesia Barat (WIB)</b> mengikuti waktu server internet secara <i>Real-time</i>.
                         </div>
                     </div>
                 )}
