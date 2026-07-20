@@ -230,8 +230,8 @@ function App() {
                             </button>
 
                             <h2 className={`font-extrabold text-lks-pink tracking-wide select-none ${isFullscreen ? 'text-3xl lg:text-5xl mb-6' : 'text-xl md:text-2xl mb-0'}`}>
-                                &lt;&lt; {activeAgenda ? activeAgenda.title : "Menunggu Sesi Dimulai"} &gt;&gt;
-                            </h2>
+    {activeAgenda ? activeAgenda.title : "Menunggu Sesi Dimulai"}
+</h2>
                             <div className={`font-bold text-lks-blue leading-none tracking-tight select-none flex items-center justify-center ${isFullscreen ? 'text-[22vw]' : 'text-[15vw] lg:text-[130pt]'}`}>
                                 {hours}:{minutes}:{seconds}
                             </div>
