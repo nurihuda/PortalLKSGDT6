@@ -1,21 +1,25 @@
 {
   "config": {
-    "headline": "LKSN GDT DARING 2026",
+    "headline": "Portal LKSN N 2026 Daring",
     "docLink": "https://drive.google.com/drive/folders/lksn-gdt-docs",
     "submissionLink": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRFr1dH2Y34-ZSSxN-Ycasseqx4a_kU8Pja9dQeShIA6la4X5BVQo-JiSCcdZ3k7X8SXxJ8OhVr48d0/pubhtml"
   },
   "importantLinks": [
     {
-      "label": "Technical Handbook GDT Daring",
-      "url": "https://google.com"
+      "label": "Materi Technical Description 1",
+      "url": "https://docs.google.com/presentation/d/1Fx3ctE-PQYOL_XqtLMLO1lGLXqCdzx9D/edit?usp=sharing&ouid=111530932887485804293&rtpof=true&sd=true"
     },
     {
-      "label": "Link Zoom Utama Center",
-      "url": "https://zoom.us"
+      "label": "Jadwal",
+      "url": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQU_geOk65kktwnLyZCEWZA5tK7NLFQFLE2gutlBPWNuag8BYT_IZ_yIz97psKdjA/pubhtml?gid=2094917236&single=true"
     },
     {
-      "label": "Grup Koordinasi Pendamping",
-      "url": "https://t.me"
+      "label": "Form Kesiapan Peserta",
+      "url": "https://forms.gle/h33RPsx8hmWxQLz59"
+    },
+    {
+      "label": "Form Data Teknisi",
+      "url": "https://forms.gle/PejTA2BWZZcBwYfP7"
     }
   ],
   "modules": [
