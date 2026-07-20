@@ -75,7 +75,7 @@ const BackgroundPattern = ({ className }) => (
     </svg>
 );
 
-// --- LOGO GDTSKILLS (WARNA DISAMAKAN JADI BIRU LKSN #2982c5) ---
+// --- LOGO GDTSKILLS (WARNA BIRU LKSN #2982c5) ---
 const LogoGdtSkills = ({ className }) => (
     <svg className={className} preserveAspectRatio="xMidYMid meet" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 270.61 71.33" width="100%" height="100%">
         <defs>
@@ -86,7 +86,7 @@ const LogoGdtSkills = ({ className }) => (
     </svg>
 );
 
-// --- HELPER PARSING WAKTU ABSOLUT (Memaksa data JSON menjadi WIB +07:00) ---
+// --- HELPER PARSING WAKTU ABSOLUT ---
 const getWibEpoch = (dateString) => {
     if (!dateString) return Date.now();
     const safeString = dateString.includes('+') || dateString.includes('Z') ? dateString : `${dateString}+07:00`;
@@ -116,7 +116,7 @@ function App() {
             .catch(err => console.error(err));
     }, []);
 
-    // 2. Ambil Waktu Asli dari Server Satelit Internet (Bypass Jam Laptop Penipu)
+    // 2. Ambil Waktu Asli dari Server Satelit Internet
     useEffect(() => {
         fetch('https://worldtimeapi.org/api/timezone/Asia/Jakarta')
             .then(res => res.json())
@@ -160,7 +160,7 @@ function App() {
         }
     };
 
-    // Logika Sinkronisasi Agenda menggunakan Epoch Murni
+    // Logika Sinkronisasi Agenda
     const { activeAgenda, nextAgenda } = useMemo(() => {
         let active = null, next = null;
         for (let i = 0; i < db.schedule.length; i++) {
@@ -229,7 +229,7 @@ function App() {
                                 {isFullscreen ? <IconMinimize /> : <IconMaximize />}
                             </button>
 
-                            {/* JUDUL AGENDA SAAT INI (WARNA BIRU, TANPA << >>) */}
+                            {/* JUDUL AGENDA SAAT INI (WARNA BIRU) */}
                             <h2 className={`font-extrabold text-lks-blue tracking-wide select-none ${isFullscreen ? 'text-3xl lg:text-5xl mb-6' : 'text-xl md:text-2xl mb-0'}`}>
                                 {activeAgenda ? activeAgenda.title : "Menunggu Sesi Dimulai"}
                             </h2>
@@ -242,21 +242,23 @@ function App() {
                             </p>
                         </div>
 
-                        {/* WIDGET KANAN (WARNA WAKTU SISTEM & AGENDA SELANJUTNYA DISAMAKAN JADI BIRU) */}
+                        {/* WIDGET KANAN (WAKTU SISTEM = HIJAU TEKS PUTIH, AGENDA SELANJUTNYA = BIRU TEKS PUTIH) */}
                         {!isFullscreen && (
                             <div className="w-full md:w-1/4 flex flex-col justify-between gap-4">
-                                <div className="bg-lks-blue text-white p-6 font-bold flex flex-col justify-center h-1/2 rounded-none shadow-sm">
-                                    <span className="text-xs font-bold block mb-2 text-sky-100 uppercase tracking-wider">Waktu Sistem (WIB):</span>
-                                    <div className="text-3xl lg:text-4xl font-black font-mono leading-none tracking-tight">
+                                {/* KOTAK WAKTU SISTEM (HIJAU + TEKS PUTIH) */}
+                                <div className="bg-lks-green text-white p-6 font-bold flex flex-col justify-center h-1/2 rounded-none shadow-sm">
+                                    <span className="text-xs font-bold block mb-2 text-emerald-100 uppercase tracking-wider">Waktu Sistem (WIB):</span>
+                                    <div className="text-3xl lg:text-4xl font-black font-mono leading-none tracking-tight text-white">
                                         {timeFormatter.format(dateObj).replace(/\./g, ':')}
                                     </div>
-                                    <div className="text-xs mt-2 text-sky-100">
+                                    <div className="text-xs mt-2 text-emerald-100">
                                         {dateFormatter.format(dateObj)}
                                     </div>
                                 </div>
+                                {/* KOTAK AGENDA SELANJUTNYA (BIRU + TEKS PUTIH) */}
                                 <div className="bg-lks-blue text-white p-6 font-bold flex flex-col justify-center h-1/2 rounded-none shadow-sm">
                                     <span className="text-xs font-bold block mb-2 text-sky-100 uppercase tracking-wider">Agenda Selanjutnya:</span>
-                                    <p className="text-lg lg:text-xl leading-snug font-extrabold">
+                                    <p className="text-lg lg:text-xl leading-snug font-extrabold text-white">
                                         {nextAgenda ? nextAgenda.title : "Seluruh Rangkaian Agenda Selesai"}
                                     </p>
                                 </div>
