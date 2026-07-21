@@ -100,7 +100,7 @@ function App() {
     const [searchQuery, setSearchQuery] = useState('');
     const [sortBy, setSortBy] = useState('no-asc');
     
-    // Fitur Mode Malam Sederhana (Hanya ganti warna BG utama jadi Dark Grey)
+    // Fitur Mode Malam Sederhana
     const [isDarkMode, setIsDarkMode] = useState(false);
 
     // Engine State Waktu Absolut (Epoch ms)
@@ -205,7 +205,7 @@ function App() {
     const dateFormatter = new Intl.DateTimeFormat('id-ID', { timeZone: 'Asia/Jakarta', day: 'numeric', month: 'long', year: 'numeric' });
     const dateObj = new Date(currentEpoch);
 
-    // PALET WARNA (LIGHT VS DARK GREY MODE)
+    // PALET WARNA
     const bgMain = isDarkMode ? '#121212' : '#ffffff';
     const bgHeader = isDarkMode ? '#1e1e1e' : '#ffffff';
     const bgCard = isDarkMode ? '#1e1e1e' : '#ffffff';
@@ -258,11 +258,11 @@ function App() {
                                 {isFullscreen ? <IconMinimize /> : <IconMaximize />}
                             </button>
 
-                            {/* JUDUL AGENDA SAAT INI (WARNA BIRU #2982c5) */}
+                            {/* JUDUL AGENDA SAAT INI */}
                             <h2 className={`font-extrabold text-[#2982c5] tracking-wide select-none ${isFullscreen ? 'text-3xl lg:text-5xl mb-6' : 'text-xl md:text-2xl mb-0'}`}>
                                 {activeAgenda ? activeAgenda.title : "Menunggu Sesi Dimulai"}
                             </h2>
-                            {/* TIMER COUNTDOWN WARNA BIRU LKSN #2982c5 */}
+                            {/* TIMER COUNTDOWN WARNA BIRU LKSN */}
                             <div className={`font-bold text-[#2982c5] leading-none tracking-tight select-none flex items-center justify-center ${isFullscreen ? 'text-[22vw]' : 'text-[15vw] lg:text-[130pt]'}`}>
                                 {hours}:{minutes}:{seconds}
                             </div>
@@ -271,7 +271,7 @@ function App() {
                             </p>
                         </div>
 
-                        {/* WIDGET KANAN (PASTI BEWARNA HIJAU & BIRU TEKS PUTIH VIA INLINE STYLES) */}
+                        {/* WIDGET KANAN */}
                         {!isFullscreen && (
                             <div className="w-full md:w-1/4 flex flex-col justify-between gap-4">
                                 {/* KOTAK WAKTU SISTEM (BG HIJAU #03a550 + TEKS PUTIH) */}
@@ -352,15 +352,22 @@ function App() {
                         </div>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 overflow-y-auto flex-1">
-                            {processedPeserta.map((p, idx) => (
-                                <div key={idx} className="p-4 flex flex-col xl:flex-row xl:items-center justify-between text-base transition gap-4" style={{ backgroundColor: isDarkMode ? '#2a2a2a' : '#f8fafc' }}>
-                                    <div className="flex items-center">
-                                        <span className="font-mono bg-sky-100 text-[#2982c5] px-3 py-1 font-bold mr-3">{p.no}</span>
-                                        <span className="font-bold" style={{ color: isDarkMode ? '#ffffff' : '#1e293b' }}>{p.nama}</span>
+                            {processedPeserta.map((p, idx) => {
+                                const hasLink = p.link && p.link.trim() !== '' && p.link !== '#';
+                                return (
+                                    <div key={idx} className="p-4 flex flex-col xl:flex-row xl:items-center justify-between text-base transition gap-4" style={{ backgroundColor: isDarkMode ? '#2a2a2a' : '#f8fafc' }}>
+                                        <div className="flex items-center">
+                                            <span className="font-mono bg-sky-100 text-[#2982c5] px-3 py-1 font-bold mr-3">{p.no}</span>
+                                            <span className="font-bold" style={{ color: isDarkMode ? '#ffffff' : '#1e293b' }}>{p.nama}</span>
+                                        </div>
+                                        {hasLink ? (
+                                            <a href={p.link} target="_blank" rel="noreferrer" className="bg-[#2982c5] hover:bg-sky-600 transition text-white px-8 py-4 font-bold text-center shadow-md text-base whitespace-nowrap">Buka Folder</a>
+                                        ) : (
+                                            <button disabled className="bg-slate-300 text-slate-500 px-8 py-4 font-bold text-center text-base whitespace-nowrap cursor-not-allowed">Belum Ada Link</button>
+                                        )}
                                     </div>
-                                    <a href={p.link} target="_blank" rel="noreferrer" className="bg-[#2982c5] hover:bg-sky-600 transition text-white px-8 py-4 font-bold text-center shadow-md text-base whitespace-nowrap">Buka Folder</a>
-                                </div>
-                            ))}
+                                );
+                            })}
                         </div>
                     </div>
                 )}
@@ -459,7 +466,7 @@ function App() {
                 )}
             </main>
 
-            {/* --- FOOTER (1/6) TOMBOL PUTIH DENGAN TEKS ADAPTIVE RESPONSIVE --- */}
+            {/* --- FOOTER (1/6) --- */}
             <footer className="h-[16.6vh] relative w-full shrink-0 border-0 z-20 transition-colors duration-200" style={{ backgroundColor: bgHeader }}>
                 <BackgroundPattern className="absolute inset-0 w-full h-full object-cover rotate-180 -z-10" />
                 <div className="absolute inset-0 flex items-center justify-center gap-4 lg:gap-6 px-12 lg:px-24 z-10 w-full h-full py-4">
