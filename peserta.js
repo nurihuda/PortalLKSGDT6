@@ -4,7 +4,7 @@ window.DATA_PESERTA = [
   { "no": "02", "nama": "Ahmad Khadavi", "link": "https://drive.google.com/drive/folders/1Yd2ALOh-elrWXbD9eSc8ITGr5tckBwS_" },
   { "no": "03", "nama": "ALFIAN", "link": "https://drive.google.com/drive/folders/19sCcbl044TAjC61g94mQqfsM83Atayv_" },
   { "no": "04", "nama": "Alika Tsuraya Ostman", "link": "https://drive.google.com/drive/folders/1mJL56QT5Wwml3E9o2xDewjZxi-eczfkw" },
-  { "no": "05", "nama": "ALMIRA PUSPANING JAGAD", "link": "#" },
+  { "no": "05", "nama": "ALMIRA PUSPANING JAGAD", "link": "https://drive.google.com/drive/folders/126WQVkOIVCLB5rKFt9QgjXCDUhxn7gmj" },
   { "no": "06", "nama": "AS SHAFIRA QINAYA", "link": "https://drive.google.com/drive/folders/15jR4SHT3G9tGJImkVqE01K3eCLmO2w6q" },
   { "no": "07", "nama": "Asfa Dzaki Nur Fathan", "link": "https://drive.google.com/drive/folders/1OEF_pANqy0uCNlV4XBuF-vr6-BUSdDto" },
   { "no": "08", "nama": "AZELIA SAMARA BALQIS", "link": "https://drive.google.com/drive/folders/1j3g2pUvt2j4H5zhn8yvmqzqiKGApXrJU" },
