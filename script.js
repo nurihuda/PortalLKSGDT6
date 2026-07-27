@@ -213,7 +213,7 @@ function App() {
     return (
         <div className="flex flex-col h-screen w-screen overflow-hidden font-karla transition-colors duration-200" style={{ backgroundColor: bgMain }}>
             
-          {/* --- HEADER --- */}
+            {/* --- HEADER (1/6) DENGAN LOGO & TOGGLE DARK MODE + HOME --- */}
             <header className="h-[16.6vh] w-full shrink-0 flex items-center justify-between px-12 lg:px-24 relative z-20 transition-colors duration-200" style={{ backgroundColor: bgHeader }}>
                 <button 
                     onClick={() => setView('dashboard')} 
@@ -227,7 +227,7 @@ function App() {
                         {db.config.headline || "Portal LKSN N 2026 Daring"}
                     </h1>
                     
-                    {/* TOGGLE DARK MODE */}
+                    {/* TOMBOL TOGGLE MOON/SUN (MODE MALAM) */}
                     <button 
                         onClick={() => setIsDarkMode(!isDarkMode)} 
                         className="p-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold transition-all cursor-pointer shadow-sm rounded-none border border-slate-200"
@@ -235,8 +235,8 @@ function App() {
                     >
                         {isDarkMode ? <IconSun /> : <IconMoon />}
                     </button>
-            
-                    {/* TOMBOL HOME */}
+
+                    {/* TOMBOL HOME DI ATAS KANAN */}
                     <button 
                         onClick={() => setView('dashboard')} 
                         className="flex items-center gap-2 bg-[#2982c5] hover:bg-sky-600 text-white font-bold px-4 py-2.5 text-sm transition-all cursor-pointer shadow-sm"
