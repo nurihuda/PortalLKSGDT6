@@ -14,6 +14,14 @@
       "url": "https://telkomsel.zoom.us/j/99064347555?pwd=CKTAfJ6rr42tceebRQWVJoOoGU6TpD.1"
     },
     {
+      "label": "Akses Font Peserta",
+      "url": "https://drive.google.com/drive/folders/1gjVhpogOqtHTGllxtesQt9UYH4Tt5MExIjSaKwVJcFZqgKAMyUEZxBVJ4eYuKhPgFk0AfrXj?usp=sharing"
+    },
+    {
+      "label": "Akses Musik Peserta",
+      "url": "https://drive.google.com/drive/folders/1cujzBjW6lXJ8yq3rLsLdl44dlRAlRVO1uV7uX753AJmwQ6qgqHzymJJBOAhPRPxLqH3XslwO?usp=drive_link"
+    },
+    {
       "label": "Materi Technical Description 1",
       "url": "https://docs.google.com/presentation/d/1Fx3ctE-PQYOL_XqtLMLO1lGLXqCdzx9D/edit?usp=sharing&ouid=111530932887485804293&rtpof=true&sd=true"
     },
@@ -33,141 +41,46 @@
   "modules": [
     {
       "id": 1,
-      "title": "Modul Simulasi 1: Graphic Design Technology",
-      "releaseTime": "2026-07-20T08:00:00",
-      "link": "https://drive.google.com/drive/folders/1TbAsEiwKYaXMCVM6qXf2Go25QBPpcO1I?usp=sharing",
+      "title": "Modul 1: Graphic Design Technology",
+      "releaseTime": "2026-07-28T07:45:00",
+      "link": "https://drive.google.com/drive/folders/1Lt57sy1Gq5q02S3q5IK-OPIdprYwwDqq?usp=drive_link",
       "pic": "Juri"
     },
     {
       "id": 2,
-      "title": "Modul Simulasi 2: Graphic Design Technology",
-      "releaseTime": "2026-07-20T08:00:00",
-      "link": "https://drive.google.com/drive/folders/1bNl-yEnkm9CtATMl8yRzYrGpNo3amVV2?usp=drive_link",
+      "title": "Modul 2: Graphic Design Technology",
+      "releaseTime": "2026-07-28T13:00:00",
+      "link": "https://drive.google.com/drive/folders/1a50ZYuDSZGidqASyWqEWRyqBXMj_L8IU?usp=sharing",
       "pic": "Juri"
     },
     {
       "id": 3,
-      "title": "Modul Utama 1: Branding & Logo Design",
-      "releaseTime": "2026-07-28T08:30:00",
-      "link": "https://drive.google.com",
+      "title": "Modul 3: Graphic Design Technology",
+      "releaseTime": "2026-07-29T07:45:00",
+      "link": "https://drive.google.com/drive/folders/1-1uUp1Y0nIFhDwpG7vUBAH-_Pam1ESrY?usp=drive_link",
       "pic": "Juri"
     },
     {
       "id": 4,
-      "title": "Modul Utama 2: Client Brief & UI/UX Design",
-      "releaseTime": "2026-07-28T13:15:00",
-      "link": "https://drive.google.com",
-      "pic": "Juri"
-    },
-    {
-      "id": 5,
-      "title": "Modul Utama 3: Editorial & Magazine Layout",
-      "releaseTime": "2026-07-29T08:15:00",
-      "link": "https://drive.google.com",
-      "pic": "Juri"
-    },
-    {
-      "id": 6,
-      "title": "Modul Utama 4: Packaging & Production",
-      "releaseTime": "2026-07-29T10:45:00",
-      "link": "https://drive.google.com",
+      "title": "Modul 4: Graphic Design Technology",
+      "releaseTime": "2026-07-29T13:00:00",
+      "link": "https://drive.google.com/drive/folders/197IEjmJBzrObBH_DiJ2am1xyGyckS3iF?usp=sharing",
       "pic": "Juri"
     }
   ],
   "schedule": [
     {
-      "id": 101,
-      "dayLabel": "Selasa, 21 Juli 2026 (Simulasi C-8)",
-      "title": "Pembukaan dan Presensi",
-      "start": "2026-07-21T07:45:00",
-      "end": "2026-07-21T08:00:00",
-      "duration": "15 Menit",
-      "pic": "Panitia & Juri"
-    },
-    {
-      "id": 102,
-      "dayLabel": "Selasa, 21 Juli 2026 (Simulasi C-8)",
-      "title": "Briefing & Tanya Jawab Modul 1",
-      "start": "2026-07-21T08:00:00",
-      "end": "2026-07-21T08:30:00",
-      "duration": "30 Menit",
-      "pic": "Juri - Nuri"
-    },
-    {
-      "id": 103,
-      "dayLabel": "Selasa, 21 Juli 2026 (Simulasi C-8)",
-      "title": "Pengerjaan Modul 1",
-      "start": "2026-07-21T08:30:00",
-      "end": "2026-07-21T10:00:00",
-      "duration": "1 Jam 30 Menit",
-      "pic": "Peserta"
-    },
-    {
-      "id": 104,
-      "dayLabel": "Selasa, 21 Juli 2026 (Simulasi C-8)",
-      "title": "Pengumpulan Modul 1",
-      "start": "2026-07-21T10:00:00",
-      "end": "2026-07-21T10:15:00",
-      "duration": "15 Menit",
-      "pic": "Peserta"
-    },
-    {
-      "id": 105,
-      "dayLabel": "Selasa, 21 Juli 2026 (Simulasi C-8)",
-      "title": "ISHOMA",
-      "start": "2026-07-21T10:15:00",
-      "end": "2026-07-21T12:45:00",
-      "duration": "2 Jam 30 Menit",
-      "pic": "-"
-    },
-    {
-      "id": 106,
-      "dayLabel": "Selasa, 21 Juli 2026 (Simulasi C-8)",
-      "title": "Briefing & Tanya Jawab Modul 2",
-      "start": "2026-07-21T12:45:00",
-      "end": "2026-07-21T13:15:00",
-      "duration": "30 Menit",
-      "pic": "Juri - Nuri"
-    },
-    {
-      "id": 107,
-      "dayLabel": "Selasa, 21 Juli 2026 (Simulasi C-8)",
-      "title": "Pengerjaan Modul 2",
-      "start": "2026-07-21T13:15:00",
-      "end": "2026-07-21T14:45:00",
-      "duration": "1 Jam 30 Menit",
-      "pic": "Peserta"
-    },
-    {
-      "id": 108,
-      "dayLabel": "Selasa, 21 Juli 2026 (Simulasi C-8)",
-      "title": "Pengumpulan Modul 2",
-      "start": "2026-07-21T14:45:00",
-      "end": "2026-07-21T15:00:00",
-      "duration": "15 Menit",
-      "pic": "Peserta"
-    },
-    {
-      "id": 109,
-      "dayLabel": "Selasa, 21 Juli 2026 (Simulasi C-8)",
-      "title": "Evaluasi Simulasi",
-      "start": "2026-07-21T15:00:00",
-      "end": "2026-07-21T16:30:00",
-      "duration": "1 Jam 30 Menit",
-      "pic": "Juri & Panitia"
-    },
-    {
-      "id": 201,
-      "dayLabel": "Senin, 27 Juli 2026 (Lomba Utama)",
-      "title": "Pembukaan LKSN GDT Daring Utama",
+      "id": 301,
+      "dayLabel": "Senin, 27 Juli 2026 (C-1)",
+      "title": "Pembukaan LKSN GDT Daring",
       "start": "2026-07-27T09:00:00",
       "end": "2026-07-27T09:15:00",
       "duration": "15 Menit",
       "pic": "-"
     },
     {
-      "id": 202,
-      "dayLabel": "Senin, 27 Juli 2026 (Lomba Utama)",
+      "id": 302,
+      "dayLabel": "Senin, 27 Juli 2026 (C-1)",
       "title": "Finalisasi Set-up Perangkat Peserta",
       "start": "2026-07-27T09:15:00",
       "end": "2026-07-27T11:00:00",
@@ -175,103 +88,409 @@
       "pic": "-"
     },
     {
-      "id": 203,
-      "dayLabel": "Selasa, 28 Juli 2026 (Lomba Utama)",
+      "id": 303,
+      "dayLabel": "Selasa, 28 Juli 2026 (C1 - Hari Pertama)",
       "title": "Registrasi, Persiapan, Pembukaan Lomba",
       "start": "2026-07-28T07:15:00",
-      "end": "2026-07-28T08:00:00",
-      "duration": "45 Menit",
+      "end": "2026-07-28T07:45:00",
+      "duration": "30 Menit",
       "pic": "-"
     },
     {
-      "id": 204,
-      "dayLabel": "Selasa, 28 Juli 2026 (Lomba Utama)",
-      "title": "Briefing & Tanya Jawab Modul 1",
-      "start": "2026-07-28T08:00:00",
+      "id": 304,
+      "dayLabel": "Selasa, 28 Juli 2026 (C1 - Hari Pertama)",
+      "title": "Baca Modul Mandiri (Modul 1)",
+      "start": "2026-07-28T07:45:00",
+      "end": "2026-07-28T07:50:00",
+      "duration": "5 Menit",
+      "pic": "-"
+    },
+    {
+      "id": 305,
+      "dayLabel": "Selasa, 28 Juli 2026 (C1 - Hari Pertama)",
+      "title": "Baca Modul Bersama (Modul 1)",
+      "start": "2026-07-28T07:50:00",
+      "end": "2026-07-28T08:05:00",
+      "duration": "15 Menit",
+      "pic": "-"
+    },
+    {
+      "id": 306,
+      "dayLabel": "Selasa, 28 Juli 2026 (C1 - Hari Pertama)",
+      "title": "Tanya Jawab Modul 1",
+      "start": "2026-07-28T08:05:00",
+      "end": "2026-07-28T08:20:00",
+      "duration": "15 Menit",
+      "pic": "-"
+    },
+    {
+      "id": 307,
+      "dayLabel": "Selasa, 28 Juli 2026 (C1 - Hari Pertama)",
+      "title": "Baca Appendix",
+      "start": "2026-07-28T08:20:00",
       "end": "2026-07-28T08:30:00",
-      "duration": "30 Menit",
+      "duration": "10 Menit",
       "pic": "-"
     },
     {
-      "id": 205,
-      "dayLabel": "Selasa, 28 Juli 2026 (Lomba Utama)",
-      "title": "Pengerjaan Modul 1 (Utama)",
+      "id": 308,
+      "dayLabel": "Selasa, 28 Juli 2026 (C1 - Hari Pertama)",
+      "title": "Tanya Jawab Appendix",
       "start": "2026-07-28T08:30:00",
-      "end": "2026-07-28T11:30:00",
-      "duration": "3 Jam",
+      "end": "2026-07-28T08:35:00",
+      "duration": "5 Menit",
       "pic": "-"
     },
     {
-      "id": 206,
-      "dayLabel": "Selasa, 28 Juli 2026 (Lomba Utama)",
-      "title": "Pengumpulan Modul 1 (Utama)",
-      "start": "2026-07-28T11:30:00",
+      "id": 309,
+      "dayLabel": "Selasa, 28 Juli 2026 (C1 - Hari Pertama)",
+      "title": "Diskusi dengan Pembimbing",
+      "start": "2026-07-28T08:35:00",
+      "end": "2026-07-28T08:45:00",
+      "duration": "10 Menit",
+      "pic": "-"
+    },
+    {
+      "id": 310,
+      "dayLabel": "Selasa, 28 Juli 2026 (C1 - Hari Pertama)",
+      "title": "Pengerjaan Modul 1",
+      "start": "2026-07-28T08:45:00",
       "end": "2026-07-28T11:45:00",
+      "duration": "3 Jam",
+      "pic": "Peserta"
+    },
+    {
+      "id": 311,
+      "dayLabel": "Selasa, 28 Juli 2026 (C1 - Hari Pertama)",
+      "title": "Pengumpulan Modul 1",
+      "start": "2026-07-28T11:45:00",
+      "end": "2026-07-28T12:00:00",
+      "duration": "15 Menit",
+      "pic": "Peserta"
+    },
+    {
+      "id": 312,
+      "dayLabel": "Selasa, 28 Juli 2026 (C1 - Hari Pertama)",
+      "title": "ISHOMA",
+      "start": "2026-07-28T12:00:00",
+      "end": "2026-07-28T12:55:00",
+      "duration": "55 Menit",
+      "pic": "-"
+    },
+    {
+      "id": 313,
+      "dayLabel": "Selasa, 28 Juli 2026 (C1 - Hari Pertama)",
+      "title": "Persiapan Sesi 2",
+      "start": "2026-07-28T12:55:00",
+      "end": "2026-07-28T13:00:00",
+      "duration": "5 Menit",
+      "pic": "-"
+    },
+    {
+      "id": 314,
+      "dayLabel": "Selasa, 28 Juli 2026 (C1 - Hari Pertama)",
+      "title": "Baca Modul Mandiri (Modul 2)",
+      "start": "2026-07-28T13:00:00",
+      "end": "2026-07-28T13:05:00",
+      "duration": "5 Menit",
+      "pic": "-"
+    },
+    {
+      "id": 315,
+      "dayLabel": "Selasa, 28 Juli 2026 (C1 - Hari Pertama)",
+      "title": "Baca Modul Bersama (Modul 2)",
+      "start": "2026-07-28T13:05:00",
+      "end": "2026-07-28T13:20:00",
       "duration": "15 Menit",
       "pic": "-"
     },
     {
-      "id": 207,
-      "dayLabel": "Selasa, 28 Juli 2026 (Lomba Utama)",
-      "title": "ISHOMA Break",
-      "start": "2026-07-28T11:45:00",
-      "end": "2026-07-28T12:45:00",
-      "duration": "1 Jam",
+      "id": 316,
+      "dayLabel": "Selasa, 28 Juli 2026 (C1 - Hari Pertama)",
+      "title": "Tanya Jawab Modul 2",
+      "start": "2026-07-28T13:20:00",
+      "end": "2026-07-28T13:35:00",
+      "duration": "15 Menit",
       "pic": "-"
     },
     {
-      "id": 208,
-      "dayLabel": "Selasa, 28 Juli 2026 (Lomba Utama)",
-      "title": "Briefing & Tanya Jawab Modul 2",
-      "start": "2026-07-28T12:45:00",
-      "end": "2026-07-28T13:15:00",
+      "id": 317,
+      "dayLabel": "Selasa, 28 Juli 2026 (C1 - Hari Pertama)",
+      "title": "Baca Appendix",
+      "start": "2026-07-28T13:35:00",
+      "end": "2026-07-28T13:45:00",
+      "duration": "10 Menit",
+      "pic": "-"
+    },
+    {
+      "id": 318,
+      "dayLabel": "Selasa, 28 Juli 2026 (C1 - Hari Pertama)",
+      "title": "Tanya Jawab Appendix",
+      "start": "2026-07-28T13:45:00",
+      "end": "2026-07-28T13:50:00",
+      "duration": "5 Menit",
+      "pic": "-"
+    },
+    {
+      "id": 319,
+      "dayLabel": "Selasa, 28 Juli 2026 (C1 - Hari Pertama)",
+      "title": "Diskusi dengan Pembimbing",
+      "start": "2026-07-28T13:50:00",
+      "end": "2026-07-28T14:00:00",
+      "duration": "10 Menit",
+      "pic": "-"
+    },
+    {
+      "id": 320,
+      "dayLabel": "Selasa, 28 Juli 2026 (C1 - Hari Pertama)",
+      "title": "Pengerjaan Modul 2",
+      "start": "2026-07-28T14:00:00",
+      "end": "2026-07-28T17:00:00",
+      "duration": "3 Jam",
+      "pic": "Peserta"
+    },
+    {
+      "id": 321,
+      "dayLabel": "Selasa, 28 Juli 2026 (C1 - Hari Pertama)",
+      "title": "Pengumpulan Modul 2",
+      "start": "2026-07-28T17:00:00",
+      "end": "2026-07-28T17:15:00",
+      "duration": "15 Menit",
+      "pic": "Peserta"
+    },
+    {
+      "id": 322,
+      "dayLabel": "Selasa, 28 Juli 2026 (C1 - Hari Pertama)",
+      "title": "Kompetisi Hari Pertama Selesai",
+      "start": "2026-07-28T17:15:00",
+      "end": "2026-07-28T17:45:00",
       "duration": "30 Menit",
       "pic": "-"
     },
     {
-      "id": 209,
-      "dayLabel": "Selasa, 28 Juli 2026 (Lomba Utama)",
-      "title": "Pengerjaan Modul 2 (Utama)",
-      "start": "2026-07-28T13:15:00",
-      "end": "2026-07-28T16:15:00",
+      "id": 323,
+      "dayLabel": "Selasa, 28 Juli 2026 (C1 - Hari Pertama)",
+      "title": "Penilaian / Marking Hari 1",
+      "start": "2026-07-28T17:45:00",
+      "end": "2026-07-28T20:45:00",
       "duration": "3 Jam",
+      "pic": "Juri"
+    },
+    {
+      "id": 403,
+      "dayLabel": "Rabu, 29 Juli 2026 (C2 - Hari Kedua)",
+      "title": "Registrasi, Persiapan, Pembukaan Lomba",
+      "start": "2026-07-29T07:15:00",
+      "end": "2026-07-29T07:45:00",
+      "duration": "30 Menit",
       "pic": "-"
     },
     {
-      "id": 210,
-      "dayLabel": "Selasa, 28 Juli 2026 (Lomba Utama)",
-      "title": "Pengumpulan Modul 2 (Utama)",
-      "start": "2026-07-28T16:15:00",
-      "end": "2026-07-28T16:30:00",
+      "id": 404,
+      "dayLabel": "Rabu, 29 Juli 2026 (C2 - Hari Kedua)",
+      "title": "Baca Modul Mandiri (Modul 3)",
+      "start": "2026-07-29T07:45:00",
+      "end": "2026-07-29T07:50:00",
+      "duration": "5 Menit",
+      "pic": "-"
+    },
+    {
+      "id": 405,
+      "dayLabel": "Rabu, 29 Juli 2026 (C2 - Hari Kedua)",
+      "title": "Baca Modul Bersama (Modul 3)",
+      "start": "2026-07-29T07:50:00",
+      "end": "2026-07-29T08:05:00",
       "duration": "15 Menit",
       "pic": "-"
     },
     {
-      "id": 211,
-      "dayLabel": "Rabu, 29 Juli 2026 (Lomba Utama)",
-      "title": "Pengerjaan Modul 3 (Utama)",
-      "start": "2026-07-29T08:15:00",
-      "end": "2026-07-29T11:15:00",
-      "duration": "3 Jam",
-      "pic": "Paralel"
+      "id": 406,
+      "dayLabel": "Rabu, 29 Juli 2026 (C2 - Hari Kedua)",
+      "title": "Tanya Jawab Modul 3",
+      "start": "2026-07-29T08:05:00",
+      "end": "2026-07-29T08:20:00",
+      "duration": "15 Menit",
+      "pic": "-"
     },
     {
-      "id": 212,
-      "dayLabel": "Rabu, 29 Juli 2026 (Lomba Utama)",
-      "title": "Pengerjaan Modul 4 (Utama)",
-      "start": "2026-07-29T10:45:00",
+      "id": 407,
+      "dayLabel": "Rabu, 29 Juli 2026 (C2 - Hari Kedua)",
+      "title": "Baca Appendix",
+      "start": "2026-07-29T08:20:00",
+      "end": "2026-07-29T08:30:00",
+      "duration": "10 Menit",
+      "pic": "-"
+    },
+    {
+      "id": 408,
+      "dayLabel": "Rabu, 29 Juli 2026 (C2 - Hari Kedua)",
+      "title": "Tanya Jawab Appendix",
+      "start": "2026-07-29T08:30:00",
+      "end": "2026-07-29T08:35:00",
+      "duration": "5 Menit",
+      "pic": "-"
+    },
+    {
+      "id": 409,
+      "dayLabel": "Rabu, 29 Juli 2026 (C2 - Hari Kedua)",
+      "title": "Diskusi dengan Pembimbing",
+      "start": "2026-07-29T08:35:00",
+      "end": "2026-07-29T08:45:00",
+      "duration": "10 Menit",
+      "pic": "-"
+    },
+    {
+      "id": 410,
+      "dayLabel": "Rabu, 29 Juli 2026 (C2 - Hari Kedua)",
+      "title": "Pengerjaan Modul 3",
+      "start": "2026-07-29T08:45:00",
+      "end": "2026-07-29T11:45:00",
+      "duration": "3 Jam",
+      "pic": "Peserta"
+    },
+    {
+      "id": 411,
+      "dayLabel": "Rabu, 29 Juli 2026 (C2 - Hari Kedua)",
+      "title": "Pengumpulan Modul 3",
+      "start": "2026-07-29T11:45:00",
+      "end": "2026-07-29T12:00:00",
+      "duration": "15 Menit",
+      "pic": "Peserta"
+    },
+    {
+      "id": 412,
+      "dayLabel": "Rabu, 29 Juli 2026 (C2 - Hari Kedua)",
+      "title": "ISHOMA",
+      "start": "2026-07-29T12:00:00",
+      "end": "2026-07-29T12:55:00",
+      "duration": "55 Menit",
+      "pic": "-"
+    },
+    {
+      "id": 413,
+      "dayLabel": "Rabu, 29 Juli 2026 (C2 - Hari Kedua)",
+      "title": "Persiapan Sesi 2",
+      "start": "2026-07-29T12:55:00",
+      "end": "2026-07-29T13:00:00",
+      "duration": "5 Menit",
+      "pic": "-"
+    },
+    {
+      "id": 414,
+      "dayLabel": "Rabu, 29 Juli 2026 (C2 - Hari Kedua)",
+      "title": "Baca Modul Mandiri (Modul 4)",
+      "start": "2026-07-29T13:00:00",
+      "end": "2026-07-29T13:05:00",
+      "duration": "5 Menit",
+      "pic": "-"
+    },
+    {
+      "id": 415,
+      "dayLabel": "Rabu, 29 Juli 2026 (C2 - Hari Kedua)",
+      "title": "Baca Modul Bersama (Modul 4)",
+      "start": "2026-07-29T13:05:00",
+      "end": "2026-07-29T13:20:00",
+      "duration": "15 Menit",
+      "pic": "-"
+    },
+    {
+      "id": 416,
+      "dayLabel": "Rabu, 29 Juli 2026 (C2 - Hari Kedua)",
+      "title": "Tanya Jawab Modul 4",
+      "start": "2026-07-29T13:20:00",
+      "end": "2026-07-29T13:35:00",
+      "duration": "15 Menit",
+      "pic": "-"
+    },
+    {
+      "id": 417,
+      "dayLabel": "Rabu, 29 Juli 2026 (C2 - Hari Kedua)",
+      "title": "Baca Appendix",
+      "start": "2026-07-29T13:35:00",
       "end": "2026-07-29T13:45:00",
-      "duration": "3 Jam",
+      "duration": "10 Menit",
       "pic": "-"
     },
     {
-      "id": 213,
-      "dayLabel": "Kamis, 30 Juli 2026 (Lomba Utama)",
-      "title": "Penutupan & Pengumuman Juara",
-      "start": "2026-07-30T13:00:00",
-      "end": "2026-07-30T14:00:00",
-      "duration": "1 Jam",
+      "id": 418,
+      "dayLabel": "Rabu, 29 Juli 2026 (C2 - Hari Kedua)",
+      "title": "Tanya Jawab Appendix",
+      "start": "2026-07-29T13:45:00",
+      "end": "2026-07-29T13:50:00",
+      "duration": "5 Menit",
       "pic": "-"
+    },
+    {
+      "id": 419,
+      "dayLabel": "Rabu, 29 Juli 2026 (C2 - Hari Kedua)",
+      "title": "Diskusi dengan Pembimbing",
+      "start": "2026-07-29T13:50:00",
+      "end": "2026-07-29T14:00:00",
+      "duration": "10 Menit",
+      "pic": "-"
+    },
+    {
+      "id": 420,
+      "dayLabel": "Rabu, 29 Juli 2026 (C2 - Hari Kedua)",
+      "title": "Pengerjaan Modul 4",
+      "start": "2026-07-29T14:00:00",
+      "end": "2026-07-29T17:00:00",
+      "duration": "3 Jam",
+      "pic": "Peserta"
+    },
+    {
+      "id": 421,
+      "dayLabel": "Rabu, 29 Juli 2026 (C2 - Hari Kedua)",
+      "title": "Pengumpulan Modul 4",
+      "start": "2026-07-29T17:00:00",
+      "end": "2026-07-29T17:15:00",
+      "duration": "15 Menit",
+      "pic": "Peserta"
+    },
+    {
+      "id": 422,
+      "dayLabel": "Rabu, 29 Juli 2026 (C2 - Hari Kedua)",
+      "title": "Kompetisi Hari Kedua Selesai",
+      "start": "2026-07-29T17:15:00",
+      "end": "2026-07-29T17:45:00",
+      "duration": "30 Menit",
+      "pic": "-"
+    },
+    {
+      "id": 423,
+      "dayLabel": "Rabu, 29 Juli 2026 (C2 - Hari Kedua)",
+      "title": "Penilaian / Marking Hari 2",
+      "start": "2026-07-29T17:45:00",
+      "end": "2026-07-29T20:45:00",
+      "duration": "3 Jam",
+      "pic": "Juri"
+    },
+    {
+      "id": 501,
+      "dayLabel": "Kamis, 30 Juli 2026 (C+1)",
+      "title": "Sesi Sharing: Bedah Modul",
+      "start": "2026-07-30T10:00:00",
+      "end": "2026-07-30T14:00:00",
+      "duration": "4 Jam",
+      "pic": "-"
+    },
+    {
+      "id": 502,
+      "dayLabel": "Kamis, 30 Juli 2026 (C+1)",
+      "title": "Penilaian / Marking Juri",
+      "start": "2026-07-30T14:00:00",
+      "end": "2026-07-30T23:59:59",
+      "duration": "10 Jam",
+      "pic": "Juri"
+    },
+    {
+      "id": 601,
+      "dayLabel": "Jumat, 31 Juli 2026 (C+2)",
+      "title": "Penutupan & Pengumuman Juara",
+      "start": "2026-07-31T09:00:00",
+      "end": "2026-07-31T11:30:00",
+      "duration": "2 Jam 30 Menit",
+      "pic": "Panitia"
     }
   ]
 }
