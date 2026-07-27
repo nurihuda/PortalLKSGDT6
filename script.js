@@ -87,7 +87,7 @@ const LogoGdtSkills = () => (
     />
 );
 
-// --- HELPER PARSING WAKTU ABSOLUT ---
+// --- HELPER PARSING WAKTU ABSOLUT (WIB +07:00) ---
 const getWibEpoch = (dateString) => {
     if (!dateString) return Date.now();
     const safeString = dateString.includes('+') || dateString.includes('Z') ? dateString : `${dateString}+07:00`;
@@ -190,7 +190,11 @@ function App() {
     const seconds = formatDuaDigit(sisaDetik % 60);
 
     const processedPeserta = useMemo(() => {
-        let filtered = pesertaList.filter(p => p.nama.toLowerCase().includes(searchQuery.toLowerCase()) || p.no.includes(searchQuery));
+        let filtered = pesertaList.filter(p => 
+            p.nama.toLowerCase().includes(searchQuery.toLowerCase()) || 
+            p.no.includes(searchQuery) ||
+            (p.email && p.email.toLowerCase().includes(searchQuery.toLowerCase()))
+        );
         return filtered.sort((a, b) => {
             if (sortBy === 'no-asc') return parseInt(a.no) - parseInt(b.no);
             if (sortBy === 'no-desc') return parseInt(b.no) - parseInt(a.no);
@@ -204,7 +208,7 @@ function App() {
     const dateFormatter = new Intl.DateTimeFormat('id-ID', { timeZone: 'Asia/Jakarta', day: 'numeric', month: 'long', year: 'numeric' });
     const dateObj = new Date(currentEpoch);
 
-    // PALET WARNA
+    // PALET WARNA (MODE LIGHT vs DARK)
     const bgMain = isDarkMode ? '#121212' : '#ffffff';
     const bgHeader = isDarkMode ? '#1e1e1e' : '#ffffff';
     const bgCard = isDarkMode ? '#1e1e1e' : '#ffffff';
@@ -330,7 +334,7 @@ function App() {
                     </div>
                 )}
 
-                {/* VIEW 2: FOLDER PENGUMPULAN & EDUKASI AKSES */}
+                {/* VIEW 2: FOLDER PENGUMPULAN & INFO EMAIL PESERTA */}
                 {view === 'peserta' && (
                     <div className="p-6 max-h-full flex flex-col h-full shadow-sm" style={{ backgroundColor: bgCard }}>
                         <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-3 border-b border-slate-200 pb-3 mb-4 shrink-0">
@@ -341,7 +345,7 @@ function App() {
                                     <option value="no-desc">No. Terbesar</option>
                                     <option value="name-asc">Nama (A-Z)</option>
                                 </select>
-                                <input type="text" placeholder="Cari No / Nama..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className="text-sm px-4 py-2 border border-slate-200 focus:outline-none w-56" style={{ backgroundColor: bgCard, color: isDarkMode ? '#ffffff' : '#000000' }}/>
+                                <input type="text" placeholder="Cari No / Nama / Email..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className="text-sm px-4 py-2 border border-slate-200 focus:outline-none w-64" style={{ backgroundColor: bgCard, color: isDarkMode ? '#ffffff' : '#000000' }}/>
                             </div>
                         </div>
 
@@ -349,7 +353,7 @@ function App() {
                             <span className="text-[#2982c5] text-lg">ℹ️</span>
                             <div>
                                 <h4 className="text-sm font-bold" style={{ color: isDarkMode ? '#ffffff' : '#1e293b' }}>Tidak bisa akses folder?</h4>
-                                <p className="text-sm mt-0.5" style={{ color: isDarkMode ? '#cbd5e1' : '#475569' }}>Sistem membatasi akses melalui <i>email whitelist</i>. Pastikan Anda <b>login dengan email Gmail baru</b> yang didaftarkan pada saat pendataan peserta.</p>
+                                <p className="text-sm mt-0.5" style={{ color: isDarkMode ? '#cbd5e1' : '#475569' }}>Sistem membatasi akses melalui <i>email whitelist</i>. Pastikan Anda <b>login dengan email Gmail resmi</b> yang tertera di bawah nama Anda.</p>
                             </div>
                         </div>
 
@@ -360,7 +364,12 @@ function App() {
                                     <div key={idx} className="p-4 flex flex-col xl:flex-row xl:items-center justify-between text-base transition gap-4" style={{ backgroundColor: isDarkMode ? '#2a2a2a' : '#f8fafc' }}>
                                         <div className="flex items-center">
                                             <span className="font-mono bg-sky-100 text-[#2982c5] px-3 py-1 font-bold mr-3">{p.no}</span>
-                                            <span className="font-bold" style={{ color: isDarkMode ? '#ffffff' : '#1e293b' }}>{p.nama}</span>
+                                            <div>
+                                                <span className="font-bold block" style={{ color: isDarkMode ? '#ffffff' : '#1e293b' }}>{p.nama}</span>
+                                                {p.email && (
+                                                    <span className="text-xs font-mono block mt-0.5" style={{ color: isDarkMode ? '#94a3b8' : '#64748b' }}>{p.email}</span>
+                                                )}
+                                            </div>
                                         </div>
                                         {hasLink ? (
                                             <a href={p.link} target="_blank" rel="noreferrer" className="bg-[#2982c5] hover:bg-sky-600 transition text-white px-8 py-4 font-bold text-center shadow-md text-base whitespace-nowrap">Buka Folder</a>
