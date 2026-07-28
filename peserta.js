@@ -171,7 +171,7 @@ window.DATA_PESERTA = [
   {
     "no": "29",
     "nama": "Rakah Ataullah Syamil",
-    "email": "raka.smk40@gmail.com",
+    "email": "rakasmksmk@gmail.com",
     "link": "https://drive.google.com/drive/folders/1C2XSICK09ZAtZQE3rNoK1geo1XlIfaqp"
   },
   {
